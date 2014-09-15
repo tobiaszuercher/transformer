@@ -1,16 +1,15 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PowerDeploy.MsBuild.v4.0")]
+[assembly: AssemblyTitle("Transformer.MsBuild.v4.0")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zuehlke Engineering AG")]
-[assembly: AssemblyProduct("PowerDeploy.MsBuild")]
-[assembly: AssemblyCopyright("Copyright © Zuehlke Engineering AG 2014")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Transformer.MsBuild.v4.0")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

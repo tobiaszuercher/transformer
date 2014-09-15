@@ -1,0 +1,22 @@
+<package>
+  <metadata>
+    <id>Transformer.VisualStudio</id>
+    <title>Transformer Package Manager Extension</title>
+    <version>0.5.0</version>
+    <authors>Tobias Zürcher</authors>
+    <owners>Tobias Zürcher</owners>
+    <licenseUrl>http://tobiaszuercher.github.io/Transformer/</licenseUrl>
+    <projectUrl>http://tobiaszuercher.github.io/Transformer/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Offers commands in the NuGet Package Manager Console to switch between environments.
+    </description>
+    <summary>Offers commands in the NuGet Package Manager Console to switch between environments.</summary>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="scripts\*.ps1" target="tools" />
+    <file src="scripts\*.psm1" target="tools" />
+    <file src="bin\Package\*.dll" target="tools" />
+  </files>
+</package>

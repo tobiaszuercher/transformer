@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Transformer.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zuehlke Technology Group")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Transformer.Tests")]
-[assembly: AssemblyCopyright("Copyright © Zuehlke Technology Group 2014")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
