@@ -1,4 +1,6 @@
-﻿namespace PowerDeploy.Transformer
+﻿using Transformer.Model;
+
+namespace Transformer
 {
     public interface IEnvironmentSerializer
     {

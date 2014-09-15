@@ -1,0 +1,20 @@
+<package>
+  <metadata>
+    <id>Transformer.MsBuild.v12.0</id>
+    <title>MsBuild targets for Transformer</title>
+    <version>0.4.1</version>
+    <authors>Tobias Zürcher</authors>
+    <owners>Tobias Zürcher</owners>
+    <licenseUrl>http://tobiaszuercher.github.io/Transformer/</licenseUrl>
+    <projectUrl>http://tobiaszuercher.github.io/Transformer/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      MsBuild v12.0 integration for Transformer which let's you transform any configuration to a specific environment.
+    </description>
+    <summary>MsBuild v12.0 integration for Transformer which let's you transform any configuration to a specific environment</summary>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="bin\Release\v12.0\*.dll" target="lib" />
+  </files>
+</package>

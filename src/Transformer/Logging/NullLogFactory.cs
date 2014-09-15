@@ -1,4 +1,5 @@
 ﻿using System;
+using PowerDeploy.Transformer.Logging;
 
 namespace PowerDeploy.Common.Logging
 {

@@ -7,8 +7,8 @@
     <ProjectGuid>{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PowerDeploy.Transformer</RootNamespace>
-    <AssemblyName>PowerDeploy.Transformer</AssemblyName>
+    <RootNamespace>Transformer</RootNamespace>
+    <AssemblyName>Transformer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,10 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography\AES.cs" />
-    <Compile Include="Environment.cs" />
+    <Compile Include="Model\Environment.cs" />
     <Compile Include="EnvironmentEncrypter.cs" />
-    <Compile Include="EnvironmentOverview.cs" />
+    <Compile Include="Model\EnvironmentOverview.cs" />
     <Compile Include="EnvironmentProvider.cs" />
+    <Compile Include="IEnvironmentFolderLocator.cs" />
     <Compile Include="IEnvironmentProvider.cs" />
     <Compile Include="IEnvironmentSerializer.cs" />
     <Compile Include="Logging\ConsoleLogFactory.cs" />
@@ -54,13 +55,14 @@
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\NullLogFactory.cs" />
     <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Model\Variable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticFolderEnvironmentProvider.cs" />
+    <Compile Include="SearchInParentFolderLocator.cs" />
+    <Compile Include="StaticFolderEnvironmentLocator.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Template\TemplateEngine.cs" />
     <Compile Include="Template\VariableResolver.cs" />
     <Compile Include="Template\VariableUsage.cs" />
-    <Compile Include="Variable.cs" />
     <Compile Include="XmlEnvironmentSerializer.cs" />
   </ItemGroup>
   <ItemGroup>

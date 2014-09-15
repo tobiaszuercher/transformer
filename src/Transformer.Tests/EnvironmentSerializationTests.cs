@@ -5,7 +5,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using NUnit.Framework;
 using PowerDeploy.Transformer;
-using Environment = PowerDeploy.Transformer.Environment;
+using Transformer.Model;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {

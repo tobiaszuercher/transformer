@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {
@@ -7,9 +8,9 @@ namespace Transformer.Tests
     {
         public DirectoryInfo DirectoryInfo { get; private set; }
 
-        public TestFolder(Environment.SpecialFolder folder)
+        public TestFolder(System.Environment.SpecialFolder folder)
         {
-            DirectoryInfo = Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(folder), Guid.NewGuid().ToString()));
+            DirectoryInfo = Directory.CreateDirectory(Path.Combine(System.Environment.GetFolderPath(folder), Guid.NewGuid().ToString()));
         }
 
         public TestFolder()

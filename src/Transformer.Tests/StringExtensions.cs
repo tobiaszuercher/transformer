@@ -2,7 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
+using System.Xml.Serialization;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {
@@ -30,6 +33,17 @@ namespace Transformer.Tests
             }
 
             return Path.Combine(root, relativePath);
+        }
+
+        public static string ToXml(this Environment target)
+        {
+            var sb = new StringBuilder();
+            var serializer = new XmlSerializer(typeof(Environment));
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            serializer.Serialize(new StringWriter(sb), target, ns);
+            
+            return sb.ToString();
         }
     }
 }

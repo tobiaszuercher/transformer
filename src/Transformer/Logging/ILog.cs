@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PowerDeploy.Common.Logging
+namespace PowerDeploy.Transformer.Logging
 {
     /// <summary>
     /// Logs a message in a running application
@@ -8,14 +8,6 @@ namespace PowerDeploy.Common.Logging
     /// <remarks>https://github.com/ServiceStackV3/ServiceStackV3 BSD Licence.</remarks>
     public interface ILog
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is debug enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
-        /// </value>
-        bool IsDebugEnabled { get; }
-
         /// <summary>
         /// Logs a Debug message.
         /// </summary>

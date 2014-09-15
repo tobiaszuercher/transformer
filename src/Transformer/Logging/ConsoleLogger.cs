@@ -1,6 +1,7 @@
 ﻿using System;
+using PowerDeploy.Common.Logging;
 
-namespace PowerDeploy.Common.Logging
+namespace PowerDeploy.Transformer.Logging
 {
     /// <summary>
     /// Default logger is to Console.WriteLine
@@ -29,8 +30,6 @@ namespace PowerDeploy.Common.Logging
         public ConsoleLogger(Type type)
         {
         }
-
-        public bool IsDebugEnabled { get { return true; } }
 
         /// <summary>
         /// Logs the specified message.

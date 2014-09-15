@@ -1,6 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
-using PowerDeploy.Transformer;
+using Transformer.Model;
 using Environment = System.Environment;
 
 namespace Transformer.Tests
@@ -9,17 +10,30 @@ namespace Transformer.Tests
     public class EnvironmentProviderTest
     {
         [Test]
-        [Ignore] // TODO:
         public void Find_Environment()
         {
-            var target = new EnvironmentProvider(new SearchInParentFolderLocator(@"samples\PowerDeploy.Sample.XCopy".MapVcsRoot()));
+            using (var workDir = new TestFolder())
+            {
+                workDir.AddFolder(".powerdeploy");
+                workDir.AddFile(".powerdeploy/unittest.xml", new Model.Environment()
+                {
+                    Name = "unittest",
+                    Variables = new List<Variable>()
+                    { 
+                        new Variable("Firstname", "Jack"), 
+                        new Variable("Lastname", "Bauer") 
+                    }
+                }.ToXml());
 
-            var result = target.GetEnvironment("unittest");
-            
-            Assert.IsNotNull(result);
-            Assert.AreEqual("unittest", result.Name);
-            Assert.AreEqual("Jack", result["Firstname"].Value);
-            Assert.AreEqual("Bauer", result["Lastname"].Value);
+                var target = new EnvironmentProvider(new SearchInParentFolderLocator(workDir.DirectoryInfo.FullName));
+     
+                var result = target.GetEnvironment("unittest");
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual("unittest", result.Name);
+                Assert.AreEqual("Jack", result["Firstname"].Value);
+                Assert.AreEqual("Bauer", result["Lastname"].Value);
+            }
         }
 
         [Test]

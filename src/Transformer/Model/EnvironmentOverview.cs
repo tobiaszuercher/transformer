@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace PowerDeploy.Transformer
+namespace Transformer.Model
 {
     [XmlRoot("environment", Namespace = "")]
     public class EnvironmentOverview

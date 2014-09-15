@@ -1,4 +1,5 @@
 ﻿using System;
+using PowerDeploy.Transformer.Logging;
 
 namespace PowerDeploy.Common.Logging
 {
@@ -48,8 +49,6 @@ namespace PowerDeploy.Common.Logging
         public void Debug(object message, Exception exception)
         {
         }
-
-        public bool IsDebugEnabled { get { return true; } }
 
         public void Debug(object message)
         {

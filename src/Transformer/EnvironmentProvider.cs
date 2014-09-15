@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ServiceStack;
+using Environment = Transformer.Model.Environment;
 
-namespace PowerDeploy.Transformer
+namespace Transformer
 {
     public class EnvironmentProvider : IEnvironmentProvider
     {
@@ -18,7 +19,7 @@ namespace PowerDeploy.Transformer
         }
 
         public EnvironmentProvider(string environmentDir)
-            : this(new StaticFolderEnvironmentProvider(environmentDir))
+            : this(new StaticFolderEnvironmentLocator(environmentDir))
         {
         }
 

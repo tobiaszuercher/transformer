@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using Moq;
 using NUnit.Framework;
-using PowerDeploy.Transformer;
+using Transformer.Model;
 
 namespace Transformer.Tests
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Transformer.Model;
 
-namespace PowerDeploy.Transformer
+namespace Transformer
 {
     public interface IEnvironmentProvider
     {

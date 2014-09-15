@@ -2,8 +2,10 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using PowerDeploy.Transformer;
+using Transformer.Model;
 
-namespace PowerDeploy.Transformer
+namespace Transformer
 {
     public class XmlEnvironmentSerializer : IEnvironmentSerializer
     {

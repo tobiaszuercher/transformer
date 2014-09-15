@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using PowerDeploy.Common.Logging;
+using PowerDeploy.Transformer.Logging;
+using Transformer.Logging;
+using Transformer.Model;
 
 namespace PowerDeploy.Transformer.Template
 {

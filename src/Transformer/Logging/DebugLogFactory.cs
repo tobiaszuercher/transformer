@@ -1,6 +1,7 @@
 ﻿using System;
+using PowerDeploy.Common.Logging;
 
-namespace PowerDeploy.Common.Logging
+namespace PowerDeploy.Transformer.Logging
 {
     /// <summary>
     /// Creates a Debug Logger, that logs all messages to: System.Diagnostics.Debug

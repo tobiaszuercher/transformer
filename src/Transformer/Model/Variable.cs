@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using PowerDeploy.Transformer.Cryptography;
 
-namespace PowerDeploy.Transformer
+namespace Transformer.Model
 {
     public class Variable
     {
@@ -26,6 +26,7 @@ namespace PowerDeploy.Transformer
             Name = name;
             Value = value;
             DoEncrypt = doEncrypt;
+
         }
 
         public void Encrypt(string aesKey)

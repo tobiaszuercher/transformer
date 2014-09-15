@@ -1,25 +1,11 @@
-﻿using System.IO;
+using System.IO;
 using System.Linq;
-using PowerDeploy.Common.Logging;
+using PowerDeploy.Transformer.Logging;
+using Transformer.Logging;
 
-namespace PowerDeploy.Transformer
+namespace Transformer
 {
-    public class StaticFolderEnvironmentProvider : IEnvironmentFolderLocator
-    {
-        public string EnvironmentFolder { get; private set; }
-
-        public StaticFolderEnvironmentProvider(string dir)
-        {
-            EnvironmentFolder = dir;
-        }
-
-        public virtual string GetEnvironmentFile(string environmentName)
-        {
-            return Path.Combine(EnvironmentFolder, environmentName);
-        }
-    }
-
-    public class SearchInParentFolderLocator : StaticFolderEnvironmentProvider
+    public class SearchInParentFolderLocator : StaticFolderEnvironmentLocator
     {
         private static ILog Log = LogManager.GetLogger(typeof (SearchInParentFolderLocator));
 
@@ -62,11 +48,5 @@ namespace PowerDeploy.Transformer
 
             return envFolder;
         }
-    }
-
-    public interface IEnvironmentFolderLocator
-    {
-        string EnvironmentFolder { get; }
-        string GetEnvironmentFile(string environment);
     }
 }
