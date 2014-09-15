@@ -6,7 +6,7 @@ matrix:
   - MONO_VERSION="3.8.0"
 
 install:
-  - sudo add-apt-repository ppa:directhex/monoxide 
+  - sudo add-apt-repository -y ppa:directhex/monoxide 
   - sudo apt-get update
   - sudo apt-get install mono-devel mono-gmcs nunit-console
   - mozroots --import --sync
