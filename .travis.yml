@@ -1,16 +1,16 @@
-language: c
+language: objective-c
 
-global:
+env:
+ global:
   - EnableNuGetPackageRestore=true 
-matrix:
-  - MONO_VERSION="3.8.0"
+ matrix:
+  - MONO_VER="3.8.0"
 
-install:
-  - sudo add-apt-repository -y ppa:directhex/monoxide 
-  - sudo apt-get update
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
-  - mozroots --import --sync
+before_install:
+ - wget "http://download.mono-project.com/archive/${MONO_VER}/macos-10-x86/MonoFramework-MDK-${MONO_VER}.macos10.xamarin.x86.dmg"
+ - hdid "MonoFramework-MDK-${MONO_VER}.macos10.xamarin.x86.dmg"
+ - sudo installer -pkg "/Volumes/Mono Framework MDK ${MONO_VER}/MonoFramework-MDK-${MONO_VER}.macos10.xamarin.x86.pkg" -target /
 
 script:
-  - xbuild build/ci.proj
-  - nunit-console ./src/Transformer.Tests/bin/Debug/Transformer.Tests.dll
+ - xbuild build/ci.proj
+ - ./build/nunit.sh src/Transformer.Tests/bin/Debug/Transformer.Tests.dll
