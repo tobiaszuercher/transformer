@@ -1,0 +1,8 @@
+language: c
+
+install:
+  - sudo apt-get install mono-devel mono-gmcs nunit-console
+
+script:
+  - xbuild build/ci.proj
+  - nunit-console ./src/Transformer.Tests/bin/Debug/Transformer.Tests.dll
