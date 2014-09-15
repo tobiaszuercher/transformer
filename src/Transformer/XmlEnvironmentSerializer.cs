@@ -3,27 +3,13 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-using PowerDeploy.Common;
-
 namespace PowerDeploy.Transformer
 {
     public class XmlEnvironmentSerializer : IEnvironmentSerializer
     {
-        private readonly IFileSystem _fileSystem;
-
-        public XmlEnvironmentSerializer()
-            : this(new PhysicalFileSystem())
-        {
-        }
-        
-        public XmlEnvironmentSerializer(IFileSystem fileSystem)
-        {
-            _fileSystem = fileSystem;
-        }
-
         public Environment Deserialize(string file)
         {
-            var xml = _fileSystem.ReadFile(file);
+            var xml = File.ReadAllText(file);
 
             var serializer = new XmlSerializer(typeof(Environment));
             var environment = serializer.Deserialize(new XmlTextReader(new StringReader(xml))) as Environment;

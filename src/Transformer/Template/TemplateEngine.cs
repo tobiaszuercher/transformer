@@ -1,27 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-
-using PowerDeploy.Common;
 using PowerDeploy.Common.Logging;
 
 namespace PowerDeploy.Transformer.Template
 {
     public class TemplateEngine
     {
-        private readonly IFileSystem _fileSystem;
         private static readonly ILog Log = LogManager.GetLogger(typeof(VariableResolver));
 
         public VariableResolver VariableResolver { get; set; }
-
-        public TemplateEngine()
-            : this(new PhysicalFileSystem())
-        {
-        }
-
-        public TemplateEngine(IFileSystem fileSystem)
-        {
-            _fileSystem = fileSystem;
-        }
 
         public int TransformDirectory(string path, Environment targetEnvironment, string subEnvironment = "", bool deleteTemplate = true)
         {
@@ -33,25 +20,31 @@ namespace PowerDeploy.Transformer.Template
 
             int templateCounter = 0;
 
-            foreach (var templateFile in _fileSystem.EnumerateDirectoryRecursive(path, "*.template.*", SearchOption.AllDirectories))
+            foreach (var templateFile in Directory.EnumerateFiles(path, "*.template.*", SearchOption.AllDirectories))
             {
                 ++templateCounter;
                 Log.Info(string.Format("  Transform template {0}", templateFile));
 
-                var templateText = _fileSystem.ReadFile(templateFile);
-                var transformed = VariableResolver.TransformVariables(templateText);
-                    
-                _fileSystem.OverwriteFile(templateFile.Replace(".template.", ".").Replace(".Template.", "."), transformed);
 
+                var templateText = File.ReadAllText(templateFile);
+                var transformed = VariableResolver.TransformVariables(templateText);
+
+                ConvertTemplateNameToTargetName(templateFile).OverwriteContent(transformed);
+     
                 if (deleteTemplate)
                 {
-                    _fileSystem.DeleteFile(templateFile);
+                    File.Delete(templateFile);
                 }
             }
 
             Log.DebugFormat("Transformed {0} template(s) in {1}.", templateCounter, path);
 
             return templateCounter;
+        }
+
+        private string ConvertTemplateNameToTargetName(string templateName)
+        {
+            return templateName.Replace(".template.", ".").Replace(".Template.", ".");
         }
     }
 
