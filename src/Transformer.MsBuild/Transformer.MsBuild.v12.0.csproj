@@ -7,8 +7,8 @@
     <ProjectGuid>{B4A787C1-BD8D-49FF-8C78-CB12B846F2B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PowerDeploy.MsBuild</RootNamespace>
-    <AssemblyName>PowerDeploy.MsBuild.v12</AssemblyName>
+    <RootNamespace>Transformer.MsBuild</RootNamespace>
+    <AssemblyName>Transformer.MsBuild.v12</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

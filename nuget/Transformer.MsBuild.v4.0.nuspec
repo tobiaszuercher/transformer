@@ -1,0 +1,20 @@
+<package>
+  <metadata>
+    <id>Transformer.MsBuild.v.4.0</id>
+    <title>Transformer MsBuild integration</title>
+    <version>1.0.0.0</version>
+    <authors>Tobias Zürcher</authors>
+    <owners>Tobias Zürcher</owners>
+    <licenseUrl>http://tobiaszuercher.github.io/Transformer/</licenseUrl>
+    <projectUrl>http://tobiaszuercher.github.io/Transformer/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      MsBuild Tasks to integrate transformer into your MsBuild Scripts.
+    </description>
+    <summary>MsBuild Tasks to integrate transformer into your MsBuild Scripts.</summary>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="..\src\Transformer.MsBuild\bin\Release\v4.0\*.dll" target="lib" />
+  </files>
+</package>
