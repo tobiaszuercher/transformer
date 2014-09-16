@@ -69,7 +69,7 @@ namespace Transformer.Tests
         public void Find_Environment_In_Same_Dir()
         {
             const string environmentXml = @"<?xml version=""1.0""?>
-                        <environment name=""local"" description=""Used for unit tests, not a real environment"">
+                        <environment description=""Used for unit tests, not a real environment"">
                           <variable name=""Name"" value=""Tobi"" />
                           <variable name=""Jack"" value=""Bauer"" />
                         </environment>";
@@ -84,7 +84,7 @@ namespace Transformer.Tests
                 var target = new EnvironmentProvider(new SearchInParentFolderLocator(workDir.DirectoryInfo.FullName));
                 var result = target.GetEnvironment("unittest");
 
-                Assert.AreEqual("local", result.Name);
+                Assert.AreEqual("unittest", result.Name);
                 Assert.AreEqual("Tobi", result["Name"].Value);
                 Assert.AreEqual("Bauer", result["Jack"].Value);
             }
