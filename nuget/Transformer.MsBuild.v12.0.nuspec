@@ -1,7 +1,7 @@
 <package>
   <metadata>
     <id>Transformer.MsBuild.v.12.0</id>
-    <title>Transformer MsBuild integration</title>
+    <title>Transformer MsBuild v12 integration</title>
     <version>1.0.0.0</version>
     <authors>Tobias Zürcher</authors>
     <owners>Tobias Zürcher</owners>
