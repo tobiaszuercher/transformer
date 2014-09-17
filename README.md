@@ -13,6 +13,10 @@ Example:
 * `App.template.config`   --> `App.config`
 * `Web.template.config`  --> `Web.config`
 
+With Visual Studio file nesting it looks like other generated code: 
+
+![Visual Studio file nesting](https://raw.githubusercontent.com/tobiaszuercher/transformer/master/doc/images/template_nesting.png)
+
 Inside the template file you can use `${variable}` as placeholders. Example:
 
 ```xml
