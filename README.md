@@ -7,7 +7,7 @@ Got tired of ms config-transform? Transformer is a simple template engine (based
 
 ![Transformer Live Demo](https://raw.githubusercontent.com/tobiaszuercher/transformer/master/doc/images/transformer-demo.gif)
 
-# How it works
+### How it works
 In order to create a template file for your config file `xxxxx.yyy`, just create a file named `xxxxx.template.yyy`.
 Example:
 * `App.template.config`   --> `App.config`
@@ -36,8 +36,8 @@ For each environment create a xml file named to the environment.
 ```xml
 <?xml version="1.0"?>
 <environment description="local environment">
-  <variable name="Firstname" value="Jack " />
-  <variable name="Lastname" value="Bauer " />
+  <variable name="firstname" value="Jack " />
+  <variable name="lastname" value="Bauer " />
 </environment>
 ```
 
@@ -47,18 +47,22 @@ Note: you can use `${env}` which contains the name of the environment.
 ```xml
 <? xml version=" 1.0" ?>
 <environment description="dev system for developers" >
-  <variable name="Firstname" value="Tobias" />
-  <variable name="Lastname" value="Zuercher " />
+  <variable name="firstname" value="Tobias" />
+  <variable name="lastname" value="Zuercher " />
 </environment>
 ```
 
 The environment files must be stored in a folder called `.powerdeploy`. During transformation, the engine will look for the `.powerdeploy` folder in all parent paths starting with the targeting path.
 
-# Quickstart for your Project
+### Quickstart for your Project
   1. `Install-Package Transformer.VisualStudio`
-  2. TODO...
+  2. Add a .powerdeploy folder in any direct parent folder from your project
+  3. Add environment files "dev.xml"
+  4. Add Web.template.config
+  5. Start adding variables to the template
+  6. Use NuGet Package Manager Console: Switch-Environment Cmdlet to switch between environments
 
-# Syntax
+### Syntax
 
 #### In templates
 
