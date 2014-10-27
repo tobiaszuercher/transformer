@@ -2,7 +2,7 @@
 using System.Management.Automation.Runspaces;
 using PowerDeploy.Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     public class PowerShellConsoleLogger : ILog
     {

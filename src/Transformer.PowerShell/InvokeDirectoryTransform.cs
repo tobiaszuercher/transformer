@@ -4,7 +4,7 @@ using PowerDeploy.Transformer.Logging;
 using PowerDeploy.Transformer.Template;
 using Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     [Cmdlet(VerbsLifecycle.Invoke, "DirectoryTransform")]
     public class InvokeDirectoryTransform : PSCmdlet

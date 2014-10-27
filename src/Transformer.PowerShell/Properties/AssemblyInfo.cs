@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Transformer.Tests")]
+[assembly: AssemblyTitle("Transformer.PowerShell")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Transformer.Tests")]
+[assembly: AssemblyProduct("Transformer.PowerShell")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7b1fe434-e9b2-4c6f-8bee-4afe667565ff")]
+[assembly: Guid("25426960-c81b-4876-8111-f32e13d8d5d6")]
 
 // Version information for an assembly consists of the following four values:
 //

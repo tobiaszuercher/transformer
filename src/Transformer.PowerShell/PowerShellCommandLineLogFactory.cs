@@ -1,7 +1,7 @@
 ﻿using System;
 using PowerDeploy.Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     /// <summary>
     /// Uses a cmdlet to log to

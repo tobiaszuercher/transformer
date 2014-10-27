@@ -5,7 +5,7 @@ using System.Web.Security;
 using PowerDeploy.Transformer.Logging;
 using Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     /// <summary>
     /// Creates a random password and writes it into a file

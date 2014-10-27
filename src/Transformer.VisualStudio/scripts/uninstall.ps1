@@ -1,4 +1,4 @@
 ﻿param($installPath, $toolsPath, $package)
 
-Remove-Module Transformer.VisualStudio -Force
+Remove-Module Transformer.PowerShell -Force
 Remove-Module TransformerModule -Force

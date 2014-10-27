@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<environment name="local" description="local development" include="">
+	<variable name="name" value="Tobi" />
+</environment>

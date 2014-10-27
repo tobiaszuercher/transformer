@@ -1,7 +1,7 @@
 ﻿using System.Management.Automation;
 using Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     [Cmdlet(VerbsCommon.Get, "EnvironmentDir")]
     public class GetEnvironmentDir : PSCmdlet

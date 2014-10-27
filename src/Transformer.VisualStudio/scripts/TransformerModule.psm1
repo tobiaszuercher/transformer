@@ -18,14 +18,14 @@ function Get-Environments {
 	Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename }
 }
 
-#function New-EncryptionKey {
-#	[CmdletBinding()]
-#	param(
-#		[Parameter] [string]$PasswordFile
-#	)
-#
-#	Invoke-CreateEncryptionKey -PasswordFile $PasswordFile
-#}
+function New-EncryptionKey {
+[CmdletBinding()]
+	param(
+		[Parameter] [string]$PasswordFile
+	)
+
+	Invoke-CreateEncryptionKey -PasswordFile $PasswordFile
+}
 
 function Protect-Environments {
 	[CmdletBinding()]
@@ -43,5 +43,6 @@ Export-ModuleMember Get-Environments
 Export-ModuleMember Switch-Environment
 #Export-ModuleMember Encrypt-Environments
 #Export-ModuleMember Create-EncryptionKey
+# TODO integrate encryption stuff
 
 Register-TabExpansion 'Switch-Environment' @{ 'environment' = { Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename } } }

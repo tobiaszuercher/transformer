@@ -52,12 +52,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewEncriptionKey.cs" />
-    <Compile Include="ProtectEnvironments.cs" />
-    <Compile Include="PowerShellCommandLineLogFactory.cs" />
-    <Compile Include="PowerShellConsoleLogger.cs" />
-    <Compile Include="GetEnvironmentDir.cs" />
-    <Compile Include="InvokeDirectoryTransform.cs" />
     <Content Include="scripts\init.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

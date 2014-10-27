@@ -3,7 +3,7 @@ using System.Management.Automation;
 using PowerDeploy.Transformer.Logging;
 using Transformer.Logging;
 
-namespace Transformer.VisualStudio
+namespace Transformer.PowerShell
 {
     /// <summary>
     /// Encrypts variable values, removes the
