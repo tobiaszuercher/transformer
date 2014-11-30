@@ -1,9 +1,9 @@
 using System.IO;
 using System.Linq;
 using PowerDeploy.Transformer.Logging;
-using Transformer.Logging;
+using Transformer.Core.Logging;
 
-namespace Transformer
+namespace Transformer.Core
 {
     public class SearchInParentFolderLocator : StaticFolderEnvironmentLocator
     {

@@ -1,12 +1,11 @@
 ﻿using System.IO;
-
 using Microsoft.Build.Utilities;
-using PowerDeploy.Transformer;
-using PowerDeploy.Transformer.Template;
-using Transformer;
-using Transformer.Logging;
+using PowerDeploy.MsBuild;
+using Transformer.Core;
+using Transformer.Core.Logging;
+using Transformer.Core.Template;
 
-namespace PowerDeploy.MsBuild
+namespace Transformer.MsBuild
 {
     public class TransformTemplates : Task
     {

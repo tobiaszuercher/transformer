@@ -75,10 +75,6 @@
       <Project>{7fcadfb9-c69c-49a4-9a47-841bbf8950e7}</Project>
       <Name>Transformer.PowerShell</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Transformer\Transformer.csproj">
-      <Project>{b7a5ffd2-a16d-482c-8d28-4552b3d29aa0}</Project>
-      <Name>Transformer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

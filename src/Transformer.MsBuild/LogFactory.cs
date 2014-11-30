@@ -2,6 +2,8 @@
 
 using Microsoft.Build.Utilities;
 using PowerDeploy.Transformer.Logging;
+using Transformer.Core.Logging;
+using Transformer.MsBuild;
 
 namespace PowerDeploy.MsBuild
 {

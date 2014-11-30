@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using PowerDeploy.Common.Logging;
 using PowerDeploy.Transformer.Logging;
-using Transformer;
-using Transformer.Logging;
-using Transformer.Model;
+using Transformer.Core.Logging;
+using Transformer.Core.Model;
 
-namespace PowerDeploy.Transformer.Template
+namespace Transformer.Core.Template
 {
     public class TemplateEngine
     {

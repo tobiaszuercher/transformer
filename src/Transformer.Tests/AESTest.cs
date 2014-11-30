@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using PowerDeploy.Transformer.Cryptography;
+using Transformer.Core.Cryptography;
 
 namespace Transformer.Tests
 {

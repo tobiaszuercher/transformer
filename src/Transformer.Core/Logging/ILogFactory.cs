@@ -1,6 +1,7 @@
 ﻿using System;
+using PowerDeploy.Transformer.Logging;
 
-namespace PowerDeploy.Transformer.Logging
+namespace Transformer.Core.Logging
 {
     /// <summary>
     /// Factory to create ILog instances

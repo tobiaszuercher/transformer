@@ -1,5 +1,6 @@
 ﻿using System;
 using PowerDeploy.Transformer.Logging;
+using Transformer.Core.Logging;
 
 namespace Transformer.PowerShell
 {

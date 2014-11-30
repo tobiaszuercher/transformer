@@ -1,11 +1,9 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
-
 using PowerDeploy.Transformer.Logging;
+using Transformer.Core.Logging;
 
-using Transformer.Logging;
-
-namespace Transformer
+namespace Transformer.Core
 {
     /// <summary>
     /// Class to encrypt variables in environments. If they have a do-encrypt attribute, the value will be encrypted using the _aesKey.

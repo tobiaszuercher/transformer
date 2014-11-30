@@ -1,6 +1,6 @@
-﻿using Transformer.Model;
+﻿using Transformer.Core.Model;
 
-namespace Transformer
+namespace Transformer.Core
 {
     public interface IEnvironmentSerializer
     {

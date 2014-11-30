@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using PowerDeploy.Transformer.Cryptography;
+using Transformer.Core.Cryptography;
 
-namespace Transformer.Model
+namespace Transformer.Core.Model
 {
     public class Variable
     {

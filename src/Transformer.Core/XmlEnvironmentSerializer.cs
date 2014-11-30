@@ -3,10 +3,10 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using PowerDeploy.Transformer.Logging;
-using Transformer.Logging;
-using Transformer.Model;
+using Transformer.Core.Logging;
+using Transformer.Core.Model;
 
-namespace Transformer
+namespace Transformer.Core
 {
     public class XmlEnvironmentSerializer : IEnvironmentSerializer
     {

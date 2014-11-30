@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-
-using PowerDeploy.Common.Logging;
 using PowerDeploy.Transformer.Logging;
-using Transformer.Logging;
-using Transformer.Model;
+using Transformer.Core.Logging;
+using Transformer.Core.Model;
 
-namespace PowerDeploy.Transformer.Template
+namespace Transformer.Core.Template
 {
     /// <summary>
     /// Used for a usage of a variable. The followings notation is supported:

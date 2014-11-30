@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace Transformer.Model
+namespace Transformer.Core.Model
 {
     [XmlRoot("environment", Namespace = "")]
     public class Environment

@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using System.Management.Automation;
 using PowerDeploy.Transformer.Logging;
-using PowerDeploy.Transformer.Template;
-using Transformer.Logging;
+using Transformer.Core;
+using Transformer.Core.Logging;
+using Transformer.Core.Template;
 
 namespace Transformer.PowerShell
 {

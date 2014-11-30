@@ -1,7 +1,8 @@
 ﻿using System.Security.Cryptography;
 using Moq;
 using NUnit.Framework;
-using Transformer.Model;
+using Transformer.Core;
+using Transformer.Core.Model;
 
 namespace Transformer.Tests
 {

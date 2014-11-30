@@ -1,7 +1,7 @@
 ﻿using System;
-using PowerDeploy.Common.Logging;
+using PowerDeploy.Transformer.Logging;
 
-namespace PowerDeploy.Transformer.Logging
+namespace Transformer.Core.Logging
 {
     /// <summary>
     /// Default logger is to System.Diagnostics.Debug.WriteLine

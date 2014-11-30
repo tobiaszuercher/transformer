@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
-using Transformer.Model;
+using Transformer.Core;
+using Transformer.Core.Model;
 using Environment = System.Environment;
 
 namespace Transformer.Tests
@@ -15,7 +16,7 @@ namespace Transformer.Tests
             using (var workDir = new TestFolder())
             {
                 workDir.AddFolder(".powerdeploy");
-                workDir.AddFile(".powerdeploy/unittest.xml", new Model.Environment()
+                workDir.AddFile(".powerdeploy/unittest.xml", new Core.Model.Environment()
                 {
                     Name = "unittest",
                     Variables = new List<Variable>()

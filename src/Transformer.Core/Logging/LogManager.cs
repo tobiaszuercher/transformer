@@ -1,7 +1,7 @@
 ﻿using System;
 using PowerDeploy.Transformer.Logging;
 
-namespace Transformer.Logging
+namespace Transformer.Core.Logging
 {
     /// <summary>
     /// Logging API for this library. You can inject your own implementation otherwise

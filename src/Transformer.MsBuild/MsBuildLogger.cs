@@ -1,10 +1,9 @@
 ﻿using System;
-
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using PowerDeploy.Transformer.Logging;
 
-namespace PowerDeploy.MsBuild
+namespace Transformer.MsBuild
 {
     public class MsBuildLogger : ILog
     {

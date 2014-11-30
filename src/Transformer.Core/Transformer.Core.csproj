@@ -7,8 +7,8 @@
     <ProjectGuid>{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Transformer</RootNamespace>
-    <AssemblyName>Transformer</AssemblyName>
+    <RootNamespace>Transformer.Core</RootNamespace>
+    <AssemblyName>Transformer.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
