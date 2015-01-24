@@ -8,7 +8,8 @@ namespace Transformer.Core
     public class SearchInParentFolderLocator : StaticFolderEnvironmentLocator
     {
         private static ILog Log = LogManager.GetLogger(typeof (SearchInParentFolderLocator));
-
+        public const string EnvironmentFolderName = ".transformer";
+            
         public SearchInParentFolderLocator(string startDir)
             : base(FindEnvironmentFolder(startDir).FullName)
         {
@@ -22,12 +23,12 @@ namespace Transformer.Core
 
             while (dirInfo.FullName != root)
             {
-                if (dirInfo.GetDirectories(".powerdeploy").Any())
+                if (dirInfo.GetDirectories(EnvironmentFolderName).Any())
                 {
                     break;
                 }
 
-                if (dirInfo.Name == ".powerdeploy")
+                if (dirInfo.Name == EnvironmentFolderName)
                 {
                     dirInfo = dirInfo.Parent;
                     break;
@@ -36,12 +37,12 @@ namespace Transformer.Core
                 dirInfo = Directory.GetParent(dirInfo.FullName);
             }
 
-            var envFolder = new DirectoryInfo(Path.Combine(dirInfo.FullName, ".powerdeploy"));
+            var envFolder = new DirectoryInfo(Path.Combine(dirInfo.FullName, EnvironmentFolderName));
 
             if (!envFolder.Exists)
             {
                 Log.Warn("Folder " + envFolder.FullName + " is missing!");
-                throw new DirectoryNotFoundException(".powerdeploy folder not found with start folder " + startFolder);
+                throw new DirectoryNotFoundException(EnvironmentFolderName + " folder not found with start folder " + startFolder);
             }
 
             Log.Debug("Using environment folder from " + envFolder.FullName);

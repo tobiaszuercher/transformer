@@ -73,7 +73,7 @@ namespace Transformer.PowerShell
             }
             catch (DirectoryNotFoundException)
             {
-                Log.Warn(".powerdeploy folder not found for " + Directory + "!");
+                Log.Warn(SearchInParentFolderLocator.EnvironmentFolderName + " folder not found for " + Directory + "!");
             }
             catch (FileNotFoundException exception)
             {

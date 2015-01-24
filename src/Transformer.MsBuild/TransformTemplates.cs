@@ -28,7 +28,7 @@ namespace Transformer.MsBuild
             }
             catch (DirectoryNotFoundException)
             {
-                Log.LogError(".powerdeploy folder not found for project " + Directory + "! :(");
+                Log.LogError(SearchInParentFolderLocator.EnvironmentFolderName + " folder not found for project " + Directory + "! :(");
                 return false;
             }
             catch (FileNotFoundException exception)

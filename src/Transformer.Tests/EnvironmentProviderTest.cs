@@ -15,8 +15,8 @@ namespace Transformer.Tests
         {
             using (var workDir = new TestFolder())
             {
-                workDir.AddFolder(".powerdeploy");
-                workDir.AddFile(".powerdeploy/unittest.xml", new Core.Model.Environment()
+                workDir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                workDir.AddFile(SearchInParentFolderLocator.EnvironmentFolderName + "/unittest.xml", new Core.Model.Environment()
                 {
                     Name = "unittest",
                     Variables = new List<Variable>()
@@ -58,7 +58,7 @@ namespace Transformer.Tests
             using (var workDir = new TestFolder(Environment.SpecialFolder.LocalApplicationData))
             {
                 workDir.AddFolder("dir1");
-                workDir.AddFolder(".powerdeploy");
+                workDir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
                 workDir.AddFolder("dir1/subdir1");
 
                 var target = new EnvironmentProvider(Path.Combine(workDir.DirectoryInfo.FullName, "dir1/subdir1"));
@@ -79,8 +79,8 @@ namespace Transformer.Tests
             {
                 workDir.AddFolder("dir1");
                 workDir.AddFolder("dir1/subdir1");
-                workDir.AddFolder(".powerdeploy");
-                workDir.AddFile(".powerdeploy/unittest.xml", environmentXml);
+                workDir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                workDir.AddFile(SearchInParentFolderLocator.EnvironmentFolderName + "/unittest.xml", environmentXml);
 
                 var target = new EnvironmentProvider(new SearchInParentFolderLocator(workDir.DirectoryInfo.FullName));
                 var result = target.GetEnvironment("unittest");
