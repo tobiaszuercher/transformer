@@ -44,6 +44,11 @@ namespace Transformer.Tests
             return absoluteFileName;
         }
 
+        public bool FileExists(string filename)
+        {
+            return File.Exists(Path.Combine(DirectoryInfo.FullName, filename));
+        }
+
         public string ReadFile(string filename)
         {
             return File.ReadAllText(Path.Combine(DirectoryInfo.FullName, filename));

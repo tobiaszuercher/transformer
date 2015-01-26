@@ -2,18 +2,27 @@
 
 namespace Transformer
 {
-    public class Options
-    {
-        [VerbOption("transform", HelpText = "Transforms template files...")]
-        public TransformOptions TransformVerb { get; set; }
-
-        [VerbOption("encrypt", HelpText = "Encrypts...")]
-        public EncryptEnvironmentOptions EncryptEnvrionmentVerb { get; set; }
-    }
-
     public class TransformOptions
     {
-        [Option('e', "enviornment")]
-        public string Environment { get; set; } 
+        [Option('e', "environment")]
+        public string Environment { get; set; }
+
+        [Option('s', "sub-environment")]
+        public string SubEnvironment { get; set; }
+
+        [Option("delete-templates")]
+        public bool DeleteTemplates { get; set; }
+
+        [Option("path")]
+        public string Path { get; set; }
+
+        [Option('p', "password")]
+        public string Password { get; set; }
+
+        [Option("password-file")]
+        public string PasswordFile { get; set; }
+
+        [Option("environment-path")]
+        public string EnvironmentPath { get; set; }
     }
 }

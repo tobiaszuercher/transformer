@@ -30,6 +30,13 @@ namespace Transformer.Core.Model
             Variables = new List<Variable>();
         }
 
+        public Environment(string name, params Variable[] variables)
+            : this()
+        {
+            Variables.AddRange(variables);
+            Name = name;
+        }
+
         public IEnumerable<Variable> EncryptVariables(string aesKey)
         {
             var variablesToEncrypt = Variables.Where(p => p.DoEncrypt).ToList();

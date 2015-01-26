@@ -1,12 +1,36 @@
 ﻿using System;
+using System.IO;
 
 namespace Transformer
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("gugus");
+            var options = new Options();
+
+            if (!CommandLine.Parser.Default.ParseArguments(args, options,
+                (verb, subOptions) =>
+                {
+                    if (verb == "transform")
+                    {
+                        var commandOptions = (TransformOptions) subOptions;
+
+                        Commands.Transform(
+                            commandOptions.Environment,
+                            commandOptions.SubEnvironment,
+                            commandOptions.Path,
+                            commandOptions.DeleteTemplates,
+                            commandOptions.EnvironmentPath,
+                            commandOptions.PasswordFile,
+                            commandOptions.Password);
+
+                        Console.WriteLine("transform");
+                    }
+                }))
+            {
+                Environment.Exit(CommandLine.Parser.DefaultExitCodeFail);
+            };
         }
     }
 }
