@@ -75,6 +75,7 @@ namespace Transformer.Tests
         {
             using (var dir = new TestFolder())
             {
+                // arrange
                 dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
 
                 var env = new Environment(
@@ -86,16 +87,46 @@ namespace Transformer.Tests
                 dir.AddFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml"), env.ToXml());
                 dir.AddFile("test.template.config", "${var1}");
 
+                // act
                 Transform("unit", dir.DirectoryInfo.FullName, "wrong-password");
 
+                // assert
                 Assert.IsFalse(dir.ReadFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml")).Contains("top-secret")); // make sure pw is encrypted
-                Assert.AreNotEqual("top-secret", dir.ReadFile("test.config"));
+                Assert.IsTrue(dir.ReadFile("test.config").Contains("Wrong password provided for"));
             }
         }
 
-        private void Transform(string environmentName = "", string path = "", string password = "", bool deleteTemplates = false)
+        [Test]
+        public void Transform_With_Correct_PasswordFile()
         {
-            var args = new List<string>() { "transform", "--environment=" + environmentName, "--path=" + path };
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+
+                var env = new Environment(
+                    "unit-test",
+                    new Variable("var1", "top-secret", true),
+                    new Variable("var2", "sesam öffne dich", true),
+                    new Variable("var3", "no secret"));
+
+                env.EncryptVariables("very-secret-password");
+                dir.AddFile("password.txt", "very-secret-password");
+
+                dir.AddFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml"), env.ToXml());
+                dir.AddFile("test.template.config", "${var1},${var2},${var3}");
+
+                // act
+                Transform("unit", dir.DirectoryInfo.FullName, passwordFile: Path.Combine(dir.DirectoryInfo.FullName, "password.txt"));
+
+                // assert
+                Assert.That(dir.ReadFile("test.config"), Is.EqualTo("top-secret,sesam öffne dich,no secret"));
+            }
+        }
+
+        private void Transform(string environmentName = "", string path = "", string password = "", string passwordFile = "", bool deleteTemplates = false)
+        {
+            var args = new List<string>() { "transform", "--environment=" + environmentName, "--path=" + path, "--password-file=" + passwordFile };
 
             if (deleteTemplates)
                 args.Add("--delete-templates");

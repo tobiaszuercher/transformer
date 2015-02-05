@@ -30,11 +30,8 @@ namespace Transformer
                 }
 
                 var envProvider = new EnvironmentProvider(locator);
-
                 var templateEngine = new TemplateEngine();
-
                 var env = envProvider.GetEnvironment(environmentName);
-
                 var aesKey = LoadAesKeyIfProvided(password, passwordFile);
 
                 if (string.IsNullOrEmpty(aesKey) == false)
@@ -77,7 +74,7 @@ namespace Transformer
                 }
                 catch
                 {
-                    Log.Warn("Could not read PasswordFile {0}.", passwordFile);
+                    Log.Error("Could not read PasswordFile {0}.", passwordFile);
                 }
             }
             else if (string.IsNullOrEmpty(password) == false)

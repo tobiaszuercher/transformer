@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using PowerDeploy.Transformer.Logging;
+using Transformer.Core.Logging;
 
 namespace Transformer.Core.Model
 {
@@ -24,6 +26,8 @@ namespace Transformer.Core.Model
         {
             get { return Variables.FirstOrDefault(v => v.Name == name); }
         }
+
+        private ILog Log = LogManager.GetLogger(typeof(Environment));
 
         public Environment()
         {
@@ -49,12 +53,17 @@ namespace Transformer.Core.Model
             return variablesToEncrypt;
         }
 
-        public void DecryptVariables(string aesKey)
+        public bool DecryptVariables(string aesKey)
         {
+            bool success = true;
+
             foreach (var variable in Variables.Where(p => p.Encrypted))
             {
-                variable.Decrypt(aesKey);
+                Log.DebugFormat("Decrypting variable {0}", variable.Name);
+                success &= variable.Decrypt(aesKey);
             }
+
+            return success;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Transformer.Tests
         {
             var encryptedFromPassword = AES.Encrypt(TextToEncrypt, Password);
             var decripted = AES.Decrypt(encryptedFromPassword, Password);
-
+            
             Assert.AreEqual(TextToEncrypt, decripted);
         }
 

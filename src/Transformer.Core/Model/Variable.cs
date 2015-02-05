@@ -1,5 +1,8 @@
-﻿using System.Xml.Serialization;
+﻿using System.Security.Cryptography;
+using System.Xml.Serialization;
+using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Cryptography;
+using Transformer.Core.Logging;
 
 namespace Transformer.Core.Model
 {
@@ -16,6 +19,8 @@ namespace Transformer.Core.Model
 
         [XmlAttribute("do-encrypt")]
         public bool DoEncrypt { get; set; }
+
+        private ILog Log = LogManager.GetLogger(typeof(Variable));
 
         public Variable()
         {
@@ -36,10 +41,23 @@ namespace Transformer.Core.Model
             Encrypted = true;
         }
 
-        public void Decrypt(string aesKey)
+        public bool Decrypt(string aesKey)
         {
-            Value = AES.Decrypt(Value, aesKey);
+            try
+            {
+                Value = AES.Decrypt(Value, aesKey);
+            }
+            catch (CryptographicException e)
+            {
+                Log.ErrorFormat("Failed to decrypt {0}, the password is wrong!", Name);
+                Value = string.Format("Wrong password provided for {0}!", Name);
+                
+                return false;
+            }
+
             Encrypted = false;
+            
+            return true;
         }
     }
 }
