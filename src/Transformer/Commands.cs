@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Web.Security;
 using NLog;
 using Transformer.Core;
 using Transformer.Core.Template;
@@ -55,6 +56,16 @@ namespace Transformer
             }
 
             return true;
+        }
+
+        public static void CreatePasswordFile(string filename)
+        {
+            var password = Membership.GeneratePassword(64, 0); // TODO: this uses System.Web. Check if there is a better way to generate the pw.
+            var targetPath = Path.GetFullPath(filename);
+            
+            File.WriteAllText(targetPath, password);
+
+            Log.Info("Created password in file {0}", targetPath);
         }
 
         private static string LoadAesKeyIfProvided(string password, string passwordFile = null)

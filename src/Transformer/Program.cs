@@ -23,8 +23,12 @@ namespace Transformer
                             commandOptions.EnvironmentPath,
                             commandOptions.PasswordFile,
                             commandOptions.Password);
+                    }
+                    else if (verb == "create-passwordfile")
+                    {
+                        var commandOptions = (CreatePasswordFileOptions) subOptions;
 
-                        Console.WriteLine("transform");
+                        Commands.CreatePasswordFile(commandOptions.PasswordFile);
                     }
                 }))
             {

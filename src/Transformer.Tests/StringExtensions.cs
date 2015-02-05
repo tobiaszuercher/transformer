@@ -45,5 +45,10 @@ namespace Transformer.Tests
             
             return sb.ToString();
         }
+
+        public static string RelativeTo(this string path, DirectoryInfo baseDir)
+        {
+            return Path.Combine(baseDir.FullName, path);
+        }
     }
 }

@@ -124,6 +124,18 @@ namespace Transformer.Tests
             }
         }
 
+        [Test]
+        public void Create_Password_File_Generates_Something_Not_Empty()
+        {
+            using (var dir = new TestFolder())
+            {
+                // act
+                CreatePasswordFile("password.txt".RelativeTo(dir.DirectoryInfo));
+                
+                Assert.IsFalse(string.IsNullOrEmpty(dir.ReadFile("password.txt")));
+            }
+        }
+
         private void Transform(string environmentName = "", string path = "", string password = "", string passwordFile = "", bool deleteTemplates = false)
         {
             var args = new List<string>() { "transform", "--environment=" + environmentName, "--path=" + path, "--password-file=" + passwordFile };
@@ -137,6 +149,13 @@ namespace Transformer.Tests
             Program.Main(args.ToArray());
         }
 
+        private void CreatePasswordFile(string filename)
+        {
+            var args = new List<string>() {"create-passwordfile", "--password-file=" + filename};
+
+            Program.Main(args.ToArray());
+        }
+
         private Environment GetEnvironment()
         {
             return new Environment(
@@ -144,14 +163,5 @@ namespace Transformer.Tests
                 new Variable("firstname", "tobi"),
                 new Variable("lastname", "zürcher"));
         }
-
-        ////[Test]
-        ////public void Test()
-        ////{
-        ////    Console.WriteLine(Path.GetFullPath("./"));
-        ////    Console.WriteLine(Path.GetFullPath("../Debug"));
-        ////    Console.WriteLine(Path.GetFullPath(""));
-        ////    Console.WriteLine(Path.GetFullPath(System.Environment.CurrentDirectory));
-        ////}
     }
 }

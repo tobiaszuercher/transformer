@@ -11,6 +11,9 @@ namespace Transformer
         //[VerbOption("encrypt", HelpText = "Encrypts...")]
         //public EncryptEnvironmentOptions EncryptEnvrionmentVerb { get; set; }
 
+        [VerbOption("create-passwordfile", HelpText = "Creates a randomly and secure password and store it in a file.")]
+        public CreatePasswordFileOptions CreatePasswordFileVerb { get; set; }
+
         [HelpVerbOption]
         public string GetUsage(string verb)
         {
