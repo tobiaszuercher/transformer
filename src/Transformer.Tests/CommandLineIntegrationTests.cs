@@ -125,6 +125,27 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Encrypt_Variables_By_Password()
+        {
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                var env = new Environment(
+                    "unit-test",
+                    new Variable("var1", "top-secret", true));
+
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                dir.AddFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), env.ToXml());
+                
+                // act
+                EncryptVariables(dir.DirectoryInfo.FullName, "password");
+
+                Assert.That(dir.ReadFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName)), !Contains.Item("top-secret"));
+                //Assert.That(dir.ReadFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName)), Is.Eq);
+            }
+        }
+
+        [Test]
         public void Create_Password_File_Generates_Something_Not_Empty()
         {
             using (var dir = new TestFolder())
@@ -145,6 +166,19 @@ namespace Transformer.Tests
 
             if (!string.IsNullOrEmpty(password))
                 args.Add("--password=" + password);
+
+            Program.Main(args.ToArray());
+        }
+
+        private void EncryptVariables(string path, string password = "", string passwordFile = "")
+        {
+            var args = new List<string>()
+                       {
+                           "encrypt",
+                           "--path=" + path,
+                           "--password=" + password,
+                           "--password-file=" + passwordFile
+                       };
 
             Program.Main(args.ToArray());
         }

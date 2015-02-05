@@ -30,6 +30,12 @@ namespace Transformer
 
                         Commands.CreatePasswordFile(commandOptions.PasswordFile);
                     }
+                    else if (verb == "encrypt")
+                    {
+                        var commandOptions = (EncryptOptions) subOptions;
+
+                        Commands.EncryptVariables(commandOptions.Path, commandOptions.Password, commandOptions.PasswordFile);
+                    }
                 }))
             {
                 Environment.Exit(CommandLine.Parser.DefaultExitCodeFail);

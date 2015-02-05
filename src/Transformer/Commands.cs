@@ -68,6 +68,44 @@ namespace Transformer
             Log.Info("Created password in file {0}", targetPath);
         }
 
+        public static void EncryptVariables(string path, string password = "", string passwordFile = "")
+        {
+            Log.Info("Encrypting all variables marked with do-encrypt attribute");
+
+            string aesKey = string.Empty;
+
+            if (string.IsNullOrEmpty(passwordFile) == false)
+            {
+                passwordFile = Path.GetFullPath(passwordFile);
+
+                if (File.Exists(passwordFile) == false)
+                {
+                    Log.Error("Password file '{0}' doesnt exist! Abording...", passwordFile);
+                    return;
+                }
+
+                aesKey = File.ReadAllText(passwordFile);
+
+                if (string.IsNullOrEmpty(aesKey))
+                {
+                    Log.Error("Password file '{0}' is empty! Abording...", passwordFile);
+                    return;
+                }
+            }
+            else if (string.IsNullOrEmpty(password) == false)
+            {
+                aesKey = password;
+            }
+            else
+            {
+                Log.Error("Please provide a Password or PasswordFile");
+                return;
+            }
+
+            var environmentEncrypter = new EnvironmentEncrypter(new EnvironmentProvider(new SearchInParentFolderLocator(path)), aesKey);
+            environmentEncrypter.EncryptAllEnvironments();
+        }
+
         private static string LoadAesKeyIfProvided(string password, string passwordFile = null)
         {
             var aesKey = string.Empty;

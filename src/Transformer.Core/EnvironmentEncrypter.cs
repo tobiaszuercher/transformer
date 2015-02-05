@@ -42,7 +42,7 @@ namespace Transformer.Core
 
         private void EncryptEnvironmentConfig(string configFile)
         {
-            var environment = _envProvider.GetEnvironment(configFile);
+            var environment = _envProvider.GetEnvironment(configFile.Replace(".xml", string.Empty)); // TODO: remove this dirty workaround
             string environmentAsText = File.ReadAllText(configFile);
 
             var changedVariables = environment.EncryptVariables(_aesKey);
