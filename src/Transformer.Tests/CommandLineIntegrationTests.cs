@@ -17,7 +17,7 @@ namespace Transformer.Tests
             {
                 // arrange
                 dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
-                dir.AddFile(SearchInParentFolderLocator.EnvironmentFolderName + "/unit.xml", GetEnvironment().ToXml());
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), GetEnvironment().ToXml());
                 dir.AddFile("app.template.config", "${firstname} ${lastname}");
                 
                 // act
@@ -35,7 +35,7 @@ namespace Transformer.Tests
             {
                 // arrange
                 dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
-                dir.AddFile(SearchInParentFolderLocator.EnvironmentFolderName + "/unit.xml", GetEnvironment().ToXml());
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), GetEnvironment().ToXml());
                 dir.AddFile("app.template.config", "${firstname}");
 
                 // act
@@ -52,6 +52,7 @@ namespace Transformer.Tests
         {
             using (var dir = new TestFolder())
             {
+                // arrange
                 dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
 
                 var env = new Environment(
@@ -60,11 +61,13 @@ namespace Transformer.Tests
 
                 env.EncryptVariables("password");
 
-                dir.AddFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml"), env.ToXml());
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), env.ToXml());
                 dir.AddFile("test.template.config", "${var1}");
 
+                // act
                 Transform("unit", dir.DirectoryInfo.FullName, "password");
 
+                // assert
                 Assert.IsFalse(dir.ReadFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml")).Contains("top-secret")); // make sure pw is encrypted
                 Assert.AreEqual("top-secret", dir.ReadFile("test.config"));
             }
@@ -84,7 +87,7 @@ namespace Transformer.Tests
 
                 env.EncryptVariables("password");
 
-                dir.AddFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml"), env.ToXml());
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), env.ToXml());
                 dir.AddFile("test.template.config", "${var1}");
 
                 // act
@@ -113,7 +116,7 @@ namespace Transformer.Tests
                 env.EncryptVariables("very-secret-password");
                 dir.AddFile("password.txt", "very-secret-password");
 
-                dir.AddFile(Path.Combine(SearchInParentFolderLocator.EnvironmentFolderName, "unit.xml"), env.ToXml());
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), env.ToXml());
                 dir.AddFile("test.template.config", "${var1},${var2},${var3}");
 
                 // act
