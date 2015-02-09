@@ -143,8 +143,9 @@ namespace Transformer.Tests
                 // act
                 EncryptVariables(dir.DirectoryInfo.FullName, "password");
 
+                // assert
                 Assert.That(dir.ReadFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName)), !Contains.Item("top-secret"));
-                //Assert.That(dir.ReadFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName)), Is.Eq);
+                Assert.IsNotEmpty(dir.ReadFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName)));
             }
         }
 
@@ -188,7 +189,7 @@ namespace Transformer.Tests
 
         private void CreatePasswordFile(string filename)
         {
-            var args = new List<string>() {"create-passwordfile", "--password-file=" + filename};
+            var args = new List<string>() { "create-passwordfile", "--password-file=" + filename };
 
             Program.Main(args.ToArray());
         }
