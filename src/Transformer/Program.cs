@@ -67,9 +67,6 @@ namespace Transformer
             {
                 //Environment.Exit(CommandLine.Parser.DefaultExitCodeFail);
             };
-
-            LogManager.GetLogger("Bla").Info("Info message");
-            LogManager.GetLogger("Bla").Debug("Debug message");
         }
     }
 }

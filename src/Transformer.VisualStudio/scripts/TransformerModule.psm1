@@ -1,4 +1,4 @@
-﻿$package_folder = Get-ChildItem (Join-Path (split-path $dte.Solution.FullName) "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -last 1
+﻿$package_folder = Get-ChildItem (Join-Path (Split-Path $dte.Solution.FullName) "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -Last 1
 $transformer_exe = Join-Path $package_folder "tools/transformer.exe"
 
 function Switch-Environment {
