@@ -1,6 +1,6 @@
 ﻿namespace Transformer
 {
-    public class ListOption
+    public class ListOption : OptionsBase
     { 
     }
 }

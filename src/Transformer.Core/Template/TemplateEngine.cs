@@ -38,7 +38,7 @@ namespace Transformer.Core.Template
                 }
             }
 
-            Log.DebugFormat("Transformed {0} template(s) in {1}.", templateCounter, path);
+            Log.InfoFormat("Transformed {0} template(s) in {1}.", templateCounter, path);
 
             return templateCounter;
         }

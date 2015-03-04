@@ -7,7 +7,7 @@ function Switch-Environment {
         [Parameter(Position = 0, Mandatory = $true)] [string]$environment,
 		[Parameter()] [string]$PasswordFile = "",
 		[Parameter()] [string]$Password = "",
-		[Parameter()] [string]$SubEnvironment = ""
+		[Parameter()] [strinag]$SubEnvironment = ""
     )
 	Write-Host "Transform templates for all files in the solution folder"
 	
@@ -26,6 +26,10 @@ function Switch-Environment {
 	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
 		$args += "--password-file"
 		$args += $PasswordFile
+	}
+
+	if ($PSBoundParameters['Verbose']) {
+		$args += "--verbose"
 	}
 
 	& $script:transformer_exe $args

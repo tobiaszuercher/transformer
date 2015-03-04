@@ -2,7 +2,7 @@
 
 namespace Transformer
 {
-    public class TransformOptions
+    public class TransformOptions : OptionsBase
     {
         [Option('e', "environment", Required = true)]
         public string Environment { get; set; }
@@ -24,5 +24,11 @@ namespace Transformer
 
         [Option("environment-path")]
         public string EnvironmentPath { get; set; }
+    }
+
+    public abstract class OptionsBase
+    {
+        [Option('v', "verbose")]
+        public bool Verbose { get; set; }
     }
 }

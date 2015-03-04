@@ -15,11 +15,10 @@ namespace Transformer
             var options = new Options();
             
             var logConfig = new LoggingConfiguration();
-            var consoleTarget = new ConsoleTarget { Layout = @"${message}" };
+            var consoleTarget = new ColoredConsoleTarget() { Layout = @"${message}" };
 
             logConfig.AddTarget("console", consoleTarget);
-            logConfig.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));    
-            
+
             LogManager.Configuration = logConfig;
             
             Core.Logging.LogManager.LogFactory = new NLogFactory();
@@ -27,10 +26,12 @@ namespace Transformer
             if (!CommandLine.Parser.Default.ParseArguments(args, options,
                 (verb, subOptions) =>
                 {
+                    logConfig.LoggingRules.Add(new LoggingRule("*", ((OptionsBase)subOptions).Verbose ? LogLevel.Debug : LogLevel.Info, consoleTarget));
+
                     if (verb == "transform")
                     {
                         var commandOptions = (TransformOptions) subOptions;
-
+                        
                         if (commandOptions == null)
                         {
                             Console.WriteLine("Example usage: transformer.exe transform --environment=test --path=c:\\temp");
@@ -66,6 +67,9 @@ namespace Transformer
             {
                 //Environment.Exit(CommandLine.Parser.DefaultExitCodeFail);
             };
+
+            LogManager.GetLogger("Bla").Info("Info message");
+            LogManager.GetLogger("Bla").Debug("Debug message");
         }
     }
 }
