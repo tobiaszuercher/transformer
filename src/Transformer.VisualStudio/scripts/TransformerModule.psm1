@@ -1,21 +1,46 @@
-﻿function Switch-Environment {
+﻿$package_folder = Get-ChildItem (Join-Path (split-path $dte.Solution.FullName) "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -last 1
+$transformer_exe = Join-Path $package_folder "tools/transformer.exe"
+
+function Switch-Environment {
 	[CmdletBinding()]
     param(
         [Parameter(Position = 0, Mandatory = $true)] [string]$environment,
-		[Parameter()] [string]$PasswordFile,
-		[Parameter()] [string]$Password,
+		[Parameter()] [string]$PasswordFile = "",
+		[Parameter()] [string]$Password = "",
 		[Parameter()] [string]$SubEnvironment = ""
     )
-	Write-Host "Transform templates for each project-folder in the current solution..."
+	Write-Host "Transform templates for all files in the solution folder"
+	
+	$args = @("transform", "--environment", $environment, "--path", (Split-Path -parent $dte.Solution.Fullname))
 
-	Get-Project -All | Where-Object  { $_.Type -ne 'Web Site' } | % { Invoke-TransformerDirectoryTransform -Environment $environment -SubEnvironment $SubEnvironment -Directory (Split-Path -parent $_.Fullname) -PasswordFile $PasswordFile -Password $Password }
+	if ([string]::IsNullOrEmpty($Password) -eq $false) {
+		$args += "--password"
+		$args += $Password
+	}
+
+	if ([string]::IsNullOrEmpty($SubEnvironment) -eq $false) {
+		$args += "--sub-environment"
+		$args += $SubEnvironment
+	}
+
+	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
+		$args += "--password-file"
+		$args += $PasswordFile
+	}
+
+	& $script:transformer_exe $args
+
+	# old version took all project dirs, so a project could also be outside of the solution path.
+	#Get-Project -All | Where-Object  { $_.Type -ne 'Web Site' } | % { `
+	#	& $transformer_exe --environment $environment --sub-environment $SubEnvironment --path (Split-Path -parent $_.Fullname) --password-file $PasswordFile --password $Password }
+	#	Invoke-TransformerDirectoryTransform -Environment $environment -SubEnvironment $SubEnvironment -Directory (Split-Path -parent $_.Fullname) -PasswordFile $PasswordFile -Password $Password }
 }
 
 function Get-Environments {
 	[CmdletBinding()]
 	param()
-
-	Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename }
+	& $script:transformer_exe list
+	#Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename }
 }
 
 function New-EncryptionKey {
@@ -26,6 +51,9 @@ function New-EncryptionKey {
 
 	Invoke-CreateEncryptionKey -PasswordFile $PasswordFile
 }
+
+
+#PM> ls .\packages -Filter Transformer* | sort -Descending | select -First 1
 
 function Protect-Environments {
 	[CmdletBinding()]
@@ -45,4 +73,4 @@ Export-ModuleMember Switch-Environment
 #Export-ModuleMember Create-EncryptionKey
 # TODO integrate encryption stuff
 
-Register-TabExpansion 'Switch-Environment' @{ 'environment' = { Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename } } }
+Register-TabExpansion 'Switch-Environment' @{ 'environment' = { & $script:transformer_exe list } }

@@ -1,6 +1,6 @@
 ﻿param($installPath, $toolsPath, $package)
 
-Import-Module (Join-Path $toolsPath "Transformer.PowerShell.dll") -Prefix Transformer
+#Import-Module (Join-Path $toolsPath "Transformer.PowerShell.dll") -Prefix Transformer
 Import-Module (Join-Path $toolsPath TransformerModule.psm1)
 
 Write-Host "Transformer loaded"

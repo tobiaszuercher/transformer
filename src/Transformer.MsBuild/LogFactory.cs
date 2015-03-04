@@ -1,7 +1,6 @@
 ﻿using System;
 
 using Microsoft.Build.Utilities;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 using Transformer.MsBuild;
 
@@ -30,6 +29,16 @@ namespace PowerDeploy.MsBuild
         public ILog GetLogger(string typeName)
         {
             return new MsBuildLogger(_taskLogHelper);
+        }
+
+        public void DisableLogging()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnableLogging()
+        {
+            throw new NotImplementedException();
         }
     }
 }

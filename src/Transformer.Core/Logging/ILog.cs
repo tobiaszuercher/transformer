@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PowerDeploy.Transformer.Logging
+namespace Transformer.Core.Logging
 {
     /// <summary>
     /// Logs a message in a running application
@@ -27,19 +27,6 @@ namespace PowerDeploy.Transformer.Logging
         /// <param name="format">The format.</param>
         /// <param name="args">The args.</param>
         void DebugFormat(string format, params object[] args);
-
-        /// <summary>
-        /// Print normal message.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        void Print(object message);
-
-        /// <summary>
-        /// Print normal format message.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="args">The args.</param>
-        void PrintFormat(string format, params object[] args);
 
         /// <summary>
         /// Logs a Error message.

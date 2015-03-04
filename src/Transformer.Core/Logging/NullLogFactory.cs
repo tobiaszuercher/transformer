@@ -1,24 +1,31 @@
 ﻿using System;
-using PowerDeploy.Transformer.Logging;
 
 namespace Transformer.Core.Logging
 {
     /// <summary>
-    /// Creates a Debug Logger, that logs all messages to: System.Diagnostics.Debug
-    /// 
-    /// Made public so its testable
+    /// Creates a NLogLogger, that logs all messages with NLog.
     /// </summary>
     /// <remarks>https://github.com/ServiceStackV3/ServiceStackV3 BSD Licence.</remarks>
-    public class NullLogFactory : ILogFactory
+    public class NLogFactory : ILogFactory
     {
         public ILog GetLogger(Type type)
         {
-            return new NullLogger(type);
+            return new NLogLogger(type);
         }
 
         public ILog GetLogger(string typeName)
         {
-            return new NullLogger(typeName);
+            return new NLogLogger(typeName);
+        }
+
+        public void DisableLogging()
+        {
+            NLog.LogManager.DisableLogging();
+        }
+
+        public void EnableLogging()
+        {
+            NLog.LogManager.EnableLogging();
         }
     }
 }

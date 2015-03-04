@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using PowerDeploy.Transformer;
 using Transformer.Core;
 using Transformer.Core.Model;
 using Transformer.Core.Template;

@@ -29,6 +29,40 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Transform_With_Not_Existing_Environment()
+        {
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), GetEnvironment().ToXml());
+                dir.AddFile("app.template.config", "${firstname} ${lastname}");
+
+                // act
+                Transform("wrong", dir.DirectoryInfo.FullName);
+
+                // assert
+                //Assert.AreEqual("tobi zürcher", dir.ReadFile("app.config"));
+            }
+        }
+
+        [Test]
+        public void Transform_With_No_Path_Variable()
+        {
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+
+                // act
+                Transform("unit", string.Empty);
+
+                // assert
+                Assert.AreEqual("tobi zürcher", dir.ReadFile("app.config"));
+            }
+        }
+
+        [Test]
         public void Transform_WithDeleteFlag_Templates()
         {
             using (var dir = new TestFolder())

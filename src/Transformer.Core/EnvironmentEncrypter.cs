@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 
 namespace Transformer.Core

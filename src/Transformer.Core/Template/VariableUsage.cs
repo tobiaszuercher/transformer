@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 using Transformer.Core.Model;
 

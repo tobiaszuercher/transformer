@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using PowerDeploy.Transformer.Logging;
+using Transformer.Core.Logging;
 
 namespace Transformer.MsBuild
 {
@@ -29,16 +29,6 @@ namespace Transformer.MsBuild
         public void DebugFormat(string format, params object[] args)
         {
             _msbuildLogger.LogMessage(format, args);
-        }
-
-        public void Print(object message)
-        {
-            _msbuildLogger.LogCommandLine(MessageImportance.High, message.ToString());
-        }
-
-        public void PrintFormat(string format, params object[] args)
-        {
-            _msbuildLogger.LogCommandLine(MessageImportance.High, string.Format(format, args));
         }
 
         public void Error(object message)

@@ -1,6 +1,5 @@
 ﻿using System.Security.Cryptography;
 using System.Xml.Serialization;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Cryptography;
 using Transformer.Core.Logging;
 

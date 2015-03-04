@@ -1,6 +1,5 @@
 using System.IO;
 using System.Linq;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 
 namespace Transformer.Core
@@ -18,6 +17,7 @@ namespace Transformer.Core
         private static DirectoryInfo FindEnvironmentFolder(string startFolder)
         {
             Log.Debug("Look for environment starting in " + startFolder);
+            
             var dirInfo = new DirectoryInfo(startFolder);
             var root = Directory.GetDirectoryRoot(startFolder);
 

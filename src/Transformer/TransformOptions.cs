@@ -4,7 +4,7 @@ namespace Transformer
 {
     public class TransformOptions
     {
-        [Option('e', "environment")]
+        [Option('e', "environment", Required = true)]
         public string Environment { get; set; }
 
         [Option('s', "sub-environment")]

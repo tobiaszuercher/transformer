@@ -4,7 +4,6 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using NUnit.Framework;
-using PowerDeploy.Transformer;
 using Transformer.Core;
 using Transformer.Core.Model;
 using Environment = Transformer.Core.Model.Environment;

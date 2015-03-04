@@ -1,5 +1,4 @@
 ﻿using System;
-using PowerDeploy.Transformer.Logging;
 
 namespace Transformer.Core.Logging
 {
@@ -18,5 +17,8 @@ namespace Transformer.Core.Logging
         /// Gets the logger.
         /// </summary>
         ILog GetLogger(string typeName);
+
+        void DisableLogging();
+        void EnableLogging();
     }
 }

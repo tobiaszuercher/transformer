@@ -1,14 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web.Security;
-using NLog;
 using Transformer.Core;
+using Transformer.Core.Logging;
 using Transformer.Core.Template;
 
 namespace Transformer
 {
     public class Commands
     {
-        private static Logger Log = LogManager.GetCurrentClassLogger();
+        private static ILog Log = LogManager.GetLogger(typeof (Commands));
 
         public static bool Transform(string environmentName, string subEnvironmentName, string path, bool deleteTemplates, string environmentDirectory = null, string passwordFile = null, string password = null)
         {
@@ -48,6 +51,12 @@ namespace Transformer
 
                 return false;
             }
+            catch (ArgumentException)
+            {
+                Log.Warn("Provided path is invalid.");
+
+                return false;
+            }
             catch (FileNotFoundException exception)
             {
                 Log.Error(exception.Message);
@@ -65,7 +74,7 @@ namespace Transformer
             
             File.WriteAllText(targetPath, password);
 
-            Log.Info("Created password in file {0}", targetPath);
+            Log.InfoFormat("Created password in file {0}", targetPath);
         }
 
         public static void EncryptVariables(string path, string password = "", string passwordFile = "")
@@ -80,7 +89,7 @@ namespace Transformer
 
                 if (File.Exists(passwordFile) == false)
                 {
-                    Log.Error("Password file '{0}' doesnt exist! Abording...", passwordFile);
+                    Log.ErrorFormat("Password file '{0}' doesnt exist! Abording...", passwordFile);
                     return;
                 }
 
@@ -88,7 +97,7 @@ namespace Transformer
 
                 if (string.IsNullOrEmpty(aesKey))
                 {
-                    Log.Error("Password file '{0}' is empty! Abording...", passwordFile);
+                    Log.ErrorFormat("Password file '{0}' is empty! Abording...", passwordFile);
                     return;
                 }
             }
@@ -114,7 +123,7 @@ namespace Transformer
             {
                 if (!File.Exists(passwordFile))
                 {
-                    Log.Warn("PasswordFile {0} doesnt exist!", passwordFile);
+                    Log.WarnFormat("PasswordFile {0} doesnt exist!", passwordFile);
                 }
 
                 try
@@ -123,7 +132,7 @@ namespace Transformer
                 }
                 catch
                 {
-                    Log.Error("Could not read PasswordFile {0}.", passwordFile);
+                    Log.ErrorFormat("Could not read PasswordFile {0}.", passwordFile);
                 }
             }
             else if (string.IsNullOrEmpty(password) == false)
@@ -132,6 +141,20 @@ namespace Transformer
             }
 
             return aesKey;
+        }
+
+        public static void List(string currentDirectory)
+        {
+            LogManager.LogFactory.DisableLogging();
+
+            var locator = new SearchInParentFolderLocator(currentDirectory);
+
+            foreach (var file in Directory.EnumerateFiles(locator.EnvironmentFolder, "*.xml").Where(f => !f.StartsWith("_")))
+            {
+                Console.WriteLine(new FileInfo(file).Name.Replace(".xml", string.Empty));
+            }
+
+            LogManager.LogFactory.EnableLogging();
         }
     }
 }

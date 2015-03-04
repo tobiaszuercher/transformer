@@ -51,7 +51,15 @@ namespace Transformer.Tests
 
         public string ReadFile(string filename)
         {
-            return File.ReadAllText(Path.Combine(DirectoryInfo.FullName, filename));
+            try
+            {
+                return File.ReadAllText(Path.Combine(DirectoryInfo.FullName, filename));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("File {0} not found, returning empty string.", filename);
+                return string.Empty;
+            }
         }
 
         public void Dispose()

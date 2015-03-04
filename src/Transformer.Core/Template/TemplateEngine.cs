@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 using Transformer.Core.Model;
 
@@ -14,7 +13,7 @@ namespace Transformer.Core.Template
 
         public int TransformDirectory(string path, Environment targetEnvironment, string subEnvironment = "", bool deleteTemplate = true)
         {
-            Log.DebugFormat("Transform templates for environment {1} ind {0} {2} deleting templates", path, targetEnvironment.Name, deleteTemplate ? "with" : "without");
+            Log.InfoFormat("Transform templates for environment {1} ind {0} {2} deleting templates", path, targetEnvironment.Name, deleteTemplate ? "with" : "without");
 
             targetEnvironment.Variables.Add(new Variable() { Name = "subenv", Value = subEnvironment });
 

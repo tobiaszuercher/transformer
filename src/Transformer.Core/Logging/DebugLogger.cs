@@ -1,5 +1,4 @@
 ﻿using System;
-using PowerDeploy.Transformer.Logging;
 
 namespace Transformer.Core.Logging
 {
@@ -75,16 +74,6 @@ namespace Transformer.Core.Logging
         public void DebugFormat(string format, params object[] args)
         {
             LogFormat(DEBUG + format, args);
-        }
-
-        public void Print(object message)
-        {
-            Log(message);
-        }
-
-        public void PrintFormat(string format, params object[] args)
-        {
-            LogFormat(format, args);
         }
 
         public void Error(object message, Exception exception)

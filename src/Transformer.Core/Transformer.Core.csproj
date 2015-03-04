@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -41,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography\AES.cs" />
+    <Compile Include="Logging\NLogLogger.cs" />
     <Compile Include="Model\Environment.cs" />
     <Compile Include="EnvironmentEncrypter.cs" />
     <Compile Include="Model\EnvironmentOverview.cs" />
@@ -48,15 +52,12 @@
     <Compile Include="IEnvironmentFolderLocator.cs" />
     <Compile Include="IEnvironmentProvider.cs" />
     <Compile Include="IEnvironmentSerializer.cs" />
-    <Compile Include="Logging\ConsoleLogFactory.cs" />
-    <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Logging\DebugLogFactory.cs" />
     <Compile Include="Logging\DebugLogger.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILogFactory.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\NullLogFactory.cs" />
-    <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Model\Variable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchInParentFolderLocator.cs" />

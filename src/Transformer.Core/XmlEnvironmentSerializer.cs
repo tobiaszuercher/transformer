@@ -2,7 +2,6 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using PowerDeploy.Transformer.Logging;
 using Transformer.Core.Logging;
 using Transformer.Core.Model;
 
