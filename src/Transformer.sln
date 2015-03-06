@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer.Tests", "Transformer.Tests\Transformer.Tests.csproj", "{654DEFFE-1B0B-418A-99E3-31C714A83627}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer", "Transformer\Transformer.csproj", "{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0383D53A-8FCE-4F40-A052-500CBEC2C615} = {0383D53A-8FCE-4F40-A052-500CBEC2C615}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer.MsBuild.v4.0", "Transformer.MsBuild\Transformer.MsBuild.v4.0.csproj", "{7BC5D9DD-8D4A-455C-B4FA-4037157D7A6D}"
 EndProject
