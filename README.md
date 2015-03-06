@@ -69,7 +69,7 @@ The environment files must be stored in a folder called `.transformer`. During t
 | Syntax            | Description                                                                                       |
 | -------------     | -------------                                                                                     |
 | ${variable}       | variable with the name "variable". if this variable is not defined, a warning message will apear. |
-| ${host=localhost} | variiable with the name host. if the variable is not specified, localhost is used.                |
+| ${host:localhost} | variiable with the name host. if the variable is not specified, localhost is used.                |
 | ${env}            | is an automatic generated variable which contains the name of the environment.                    |
 
 Sometimes you want to have a bigger block in the config if a condition is true (for example turn on WCF Tracing). For this, there is a simple if construct:
