@@ -70,12 +70,6 @@
   <ItemGroup>
     <None Include="Transformer.VisualStudio.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Transformer.PowerShell\Transformer.PowerShell.csproj">
-      <Project>{7fcadfb9-c69c-49a4-9a47-841bbf8950e7}</Project>
-      <Name>Transformer.PowerShell</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

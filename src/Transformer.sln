@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{A72B4CFF
 		..\nuget\Transformer.VisualStudio.nuspec = ..\nuget\Transformer.VisualStudio.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer.PowerShell", "Transformer.PowerShell\Transformer.PowerShell.csproj", "{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer.Core", "Transformer.Core\Transformer.Core.csproj", "{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformer", "Transformer\Transformer.csproj", "{1FB42F70-F1E6-4B50-8415-D0423F0B3AFD}"
@@ -55,12 +53,6 @@ Global
 		{E4D59A9A-ECFC-4642-A25D-EBC1AF76C37E}.Package|Any CPU.Build.0 = Package|Any CPU
 		{E4D59A9A-ECFC-4642-A25D-EBC1AF76C37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4D59A9A-ECFC-4642-A25D-EBC1AF76C37E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Package|Any CPU.ActiveCfg = Release|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Package|Any CPU.Build.0 = Release|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FCADFB9-C69C-49A4-9A47-841BBF8950E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}.Package|Any CPU.ActiveCfg = Release|Any CPU
