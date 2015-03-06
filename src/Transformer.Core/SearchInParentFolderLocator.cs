@@ -41,6 +41,7 @@ namespace Transformer.Core
 
             if (!envFolder.Exists)
             {
+                Log.DebugFormat("No folder found while looking in the parent folders starting at {0}", startFolder);
                 throw new DirectoryNotFoundException(EnvironmentFolderName + " folder not found with start folder " + startFolder);
             }
 
