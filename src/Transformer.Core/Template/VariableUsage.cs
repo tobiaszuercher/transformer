@@ -91,7 +91,7 @@ namespace Transformer.Core.Template
         private void ParseUsage(string usage, IEnumerable<Variable> variables)
         {
             // no default value -> just map the name
-            if (!usage.Contains("="))
+            if (!usage.Contains(":"))
             {
                 Variable = variables.FirstOrDefault(v => v.Name == usage);
 
@@ -102,10 +102,10 @@ namespace Transformer.Core.Template
                 return;
             }
 
-            var splitted = usage.Split('=');
+            var splitted = usage.Split(':');
 
             if (splitted.Count() != 2)
-                throw new InvalidOperationException("Wrong format of variable usage. Use ${var} or ${var=defaultvalue}.");
+                throw new InvalidOperationException("Wrong format of variable usage. Use ${var} or ${var:defaultvalue}.");
 
             var foundVariable = variables.FirstOrDefault(v => v.Name == splitted[0]);
 

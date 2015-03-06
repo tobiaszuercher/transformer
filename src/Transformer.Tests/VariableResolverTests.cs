@@ -61,7 +61,7 @@ namespace Transformer.Tests
                 };
 
             var target = new VariableResolver(variableList);
-            var result = target.TransformVariables("Hello ${FirstName=Mila} ${LastName=Kunis}!");
+            var result = target.TransformVariables("Hello ${FirstName:Mila} ${LastName:Kunis}!");
 
             Assert.AreEqual("Hello Jack Bauer!", result);
         }
@@ -72,7 +72,7 @@ namespace Transformer.Tests
             var variableList = new List<Variable>();
 
             var target = new VariableResolver(variableList);
-            var result = target.TransformVariables("Hello ${FirstName=Mila} ${LastName=Kunis}!");
+            var result = target.TransformVariables("Hello ${FirstName:Mila} ${LastName:Kunis}!");
 
             Assert.AreEqual("Hello Mila Kunis!", result);
         }
@@ -144,7 +144,7 @@ namespace Transformer.Tests
                 };
 
             var target = new VariableResolver(variableList);
-            var result = target.TransformVariables("Hello ${Fullname=$[FirstName] $[LastName]}!");
+            var result = target.TransformVariables("Hello ${Fullname:$[FirstName] $[LastName]}!");
 
             Assert.AreEqual("Hello Jack Bauer!", result);
         }
