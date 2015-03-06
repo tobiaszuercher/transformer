@@ -8,7 +8,7 @@ function Switch-Environment {
         [Parameter(Position = 0, Mandatory = $true)] [string]$environment,
 		[Parameter()] [string]$PasswordFile = "",
 		[Parameter()] [string]$Password = "",
-		[Parameter()] [strinag]$SubEnvironment = ""
+		[Parameter()] [string]$SubEnvironment = ""
     )
 	Write-Host "Transform templates for all files in the solution folder"
 	
