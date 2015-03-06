@@ -1,5 +1,6 @@
 ﻿using System.Management.Automation;
-using Transformer.Logging;
+using Transformer.Core;
+using Transformer.Core.Logging;
 
 namespace Transformer.PowerShell
 {

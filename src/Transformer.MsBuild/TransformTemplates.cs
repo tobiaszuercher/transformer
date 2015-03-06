@@ -1,12 +1,11 @@
 ﻿using System.IO;
-
 using Microsoft.Build.Utilities;
-using PowerDeploy.Transformer;
-using PowerDeploy.Transformer.Template;
-using Transformer;
-using Transformer.Logging;
+using PowerDeploy.MsBuild;
+using Transformer.Core;
+using Transformer.Core.Logging;
+using Transformer.Core.Template;
 
-namespace PowerDeploy.MsBuild
+namespace Transformer.MsBuild
 {
     public class TransformTemplates : Task
     {
@@ -29,7 +28,7 @@ namespace PowerDeploy.MsBuild
             }
             catch (DirectoryNotFoundException)
             {
-                Log.LogError(".powerdeploy folder not found for project " + Directory + "! :(");
+                Log.LogError(SearchInParentFolderLocator.EnvironmentFolderName + " folder not found for project " + Directory + "! :(");
                 return false;
             }
             catch (FileNotFoundException exception)

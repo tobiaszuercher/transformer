@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Management.Automation;
-using PowerDeploy.Transformer.Logging;
-using PowerDeploy.Transformer.Template;
-using Transformer.Logging;
+using Transformer.Core;
+using Transformer.Core.Logging;
+using Transformer.Core.Template;
 
 namespace Transformer.PowerShell
 {
@@ -72,7 +72,7 @@ namespace Transformer.PowerShell
             }
             catch (DirectoryNotFoundException)
             {
-                Log.Warn(".powerdeploy folder not found for " + Directory + "!");
+                Log.Warn(SearchInParentFolderLocator.EnvironmentFolderName + " folder not found for " + Directory + "!");
             }
             catch (FileNotFoundException exception)
             {

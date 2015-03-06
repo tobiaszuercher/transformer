@@ -4,17 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1FB42F70-F1E6-4B50-8415-D0423F0B3AFD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Transformer</RootNamespace>
     <AssemblyName>Transformer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,43 +35,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="CommandLine">
+      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cryptography\AES.cs" />
-    <Compile Include="Model\Environment.cs" />
-    <Compile Include="EnvironmentEncrypter.cs" />
-    <Compile Include="Model\EnvironmentOverview.cs" />
-    <Compile Include="EnvironmentProvider.cs" />
-    <Compile Include="IEnvironmentFolderLocator.cs" />
-    <Compile Include="IEnvironmentProvider.cs" />
-    <Compile Include="IEnvironmentSerializer.cs" />
-    <Compile Include="Logging\ConsoleLogFactory.cs" />
-    <Compile Include="Logging\ConsoleLogger.cs" />
-    <Compile Include="Logging\DebugLogFactory.cs" />
-    <Compile Include="Logging\DebugLogger.cs" />
-    <Compile Include="Logging\ILog.cs" />
-    <Compile Include="Logging\ILogFactory.cs" />
-    <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\NullLogFactory.cs" />
-    <Compile Include="Logging\NullLogger.cs" />
-    <Compile Include="Model\Variable.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="CreatePasswordFileOptions.cs" />
+    <Compile Include="EncryptOptions.cs" />
+    <Compile Include="EncryptEnvironmentOptions.cs" />
+    <Compile Include="ListOption.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchInParentFolderLocator.cs" />
-    <Compile Include="StaticFolderEnvironmentLocator.cs" />
-    <Compile Include="StringExtensions.cs" />
-    <Compile Include="Template\TemplateEngine.cs" />
-    <Compile Include="Template\VariableResolver.cs" />
-    <Compile Include="Template\VariableUsage.cs" />
-    <Compile Include="XmlEnvironmentSerializer.cs" />
+    <Compile Include="TransformOptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Transformer.Core\Transformer.Core.csproj">
+      <Project>{b7a5ffd2-a16d-482c-8d28-4552b3d29aa0}</Project>
+      <Name>Transformer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

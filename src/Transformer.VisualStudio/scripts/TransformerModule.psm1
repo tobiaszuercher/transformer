@@ -1,21 +1,44 @@
-﻿function Switch-Environment {
+﻿$sln_dir = Split-Path $dte.Solution.FullName
+$package_folder = Get-ChildItem (Join-Path $sln_dir "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -Last 1
+$transformer_exe = Join-Path $package_folder "tools/transformer.exe"
+
+function Switch-Environment {
 	[CmdletBinding()]
     param(
         [Parameter(Position = 0, Mandatory = $true)] [string]$environment,
-		[Parameter()] [string]$PasswordFile,
-		[Parameter()] [string]$Password,
-		[Parameter()] [string]$SubEnvironment = ""
+		[Parameter()] [string]$PasswordFile = "",
+		[Parameter()] [string]$Password = "",
+		[Parameter()] [strinag]$SubEnvironment = ""
     )
-	Write-Host "Transform templates for each project-folder in the current solution..."
+	Write-Host "Transform templates for all files in the solution folder"
+	
+	$args = @("transform", "--environment", $environment, "--path", (Split-Path -parent $dte.Solution.Fullname))
 
-	Get-Project -All | Where-Object  { $_.Type -ne 'Web Site' } | % { Invoke-TransformerDirectoryTransform -Environment $environment -SubEnvironment $SubEnvironment -Directory (Split-Path -parent $_.Fullname) -PasswordFile $PasswordFile -Password $Password }
-}
+	if ([string]::IsNullOrEmpty($Password) -eq $false) {
+		$args += "--password"
+		$args += $Password
+	}
 
-function Get-Environments {
-	[CmdletBinding()]
-	param()
+	if ([string]::IsNullOrEmpty($SubEnvironment) -eq $false) {
+		$args += "--sub-environment"
+		$args += $SubEnvironment
+	}
 
-	Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename }
+	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
+		$args += "--password-file"
+		$args += $PasswordFile
+	}
+
+	if ($PSBoundParameters['Verbose']) {
+		$args += "--verbose"
+	}
+
+	& $script:transformer_exe $args
+
+	# old version took all project dirs, so a project could also be outside of the solution path.
+	#Get-Project -All | Where-Object  { $_.Type -ne 'Web Site' } | % { `
+	#	& $transformer_exe --environment $environment --sub-environment $SubEnvironment --path (Split-Path -parent $_.Fullname) --password-file $PasswordFile --password $Password }
+	#	Invoke-TransformerDirectoryTransform -Environment $environment -SubEnvironment $SubEnvironment -Directory (Split-Path -parent $_.Fullname) -PasswordFile $PasswordFile -Password $Password }
 }
 
 function New-EncryptionKey {
@@ -24,25 +47,44 @@ function New-EncryptionKey {
 		[Parameter] [string]$PasswordFile
 	)
 
-	Invoke-CreateEncryptionKey -PasswordFile $PasswordFile
+	$args = @("create-passwordfile", "--password-file", (Join-Path $script:sln_dir "password.txt"))
+
+	& $script:transformer_exe $args
 }
 
 function Protect-Environments {
 	[CmdletBinding()]
 	param(
-		[Parameter()] [string]$PasswordFile,
-		[Parameter()] [string]$Password
+		[Parameter()] [string]$Password,
+		[Parameter()] [string]$PasswordFile
 	)
 
-	Write-Host "Encrypting all variables..."
+	$args = @("encrypt", "--path", $sln_dir)
+	$validation = $false
 
-	Protect-TransformerEnvironments -Directory $pwd -PasswordFile $PasswordFile -Password $Password
+	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
+		$args += "--password-file"
+		$args += $PasswordFile
+		$validation = $true
+	}
+	
+	if ([string]::IsNullOrEmpty($Password) -eq $false) {
+		$args += "--password"
+		$args += $Password
+		$validation = $true
+	}
+
+	if ($PSBoundParameters['Verbose']) {
+		$args += "--verbose"
+	}
+
+	& $script:transformer_exe $args
 }
 
-Export-ModuleMember Get-Environments
 Export-ModuleMember Switch-Environment
-#Export-ModuleMember Encrypt-Environments
-#Export-ModuleMember Create-EncryptionKey
+Export-ModuleMember Protect-Environments
+Export-ModuleMember New-EncryptionKey
 # TODO integrate encryption stuff
 
-Register-TabExpansion 'Switch-Environment' @{ 'environment' = { Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename } } }
+Register-TabExpansion 'Switch-Environment' @{ 'environment' = { & $script:transformer_exe list } }
+# Register-TabExpansion 'Switch-Environment' @{ 'environment' = { ((& $transformer_exe list) -split '[\r\n]') |? {$_} } } 

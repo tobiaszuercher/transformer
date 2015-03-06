@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using PowerDeploy.Transformer.Cryptography;
+using Transformer.Core.Cryptography;
 
 namespace Transformer.Tests
 {
@@ -15,7 +15,7 @@ namespace Transformer.Tests
         {
             var encryptedFromPassword = AES.Encrypt(TextToEncrypt, Password);
             var decripted = AES.Decrypt(encryptedFromPassword, Password);
-
+            
             Assert.AreEqual(TextToEncrypt, decripted);
         }
 

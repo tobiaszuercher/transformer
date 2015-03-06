@@ -2,8 +2,7 @@
 using System.IO;
 using System.Management.Automation;
 using System.Web.Security;
-using PowerDeploy.Transformer.Logging;
-using Transformer.Logging;
+using Transformer.Core.Logging;
 
 namespace Transformer.PowerShell
 {

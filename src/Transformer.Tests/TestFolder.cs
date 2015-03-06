@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Environment = Transformer.Model.Environment;
+using Environment = Transformer.Core.Model.Environment;
 
 namespace Transformer.Tests
 {
@@ -44,9 +44,22 @@ namespace Transformer.Tests
             return absoluteFileName;
         }
 
+        public bool FileExists(string filename)
+        {
+            return File.Exists(Path.Combine(DirectoryInfo.FullName, filename));
+        }
+
         public string ReadFile(string filename)
         {
-            return File.ReadAllText(Path.Combine(DirectoryInfo.FullName, filename));
+            try
+            {
+                return File.ReadAllText(Path.Combine(DirectoryInfo.FullName, filename));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("File {0} not found, returning empty string.", filename);
+                return string.Empty;
+            }
         }
 
         public void Dispose()

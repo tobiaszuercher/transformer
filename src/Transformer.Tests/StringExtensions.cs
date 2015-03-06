@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Environment = Transformer.Model.Environment;
+using Environment = Transformer.Core.Model.Environment;
 
 namespace Transformer.Tests
 {
@@ -44,6 +44,16 @@ namespace Transformer.Tests
             serializer.Serialize(new StringWriter(sb), target, ns);
             
             return sb.ToString();
+        }
+
+        public static string RelativeTo(this string path, string baseDir)
+        {
+            return Path.Combine(baseDir, path);
+        }
+
+        public static string RelativeTo(this string path, DirectoryInfo baseDir)
+        {
+            return path.RelativeTo(baseDir.FullName);
         }
     }
 }

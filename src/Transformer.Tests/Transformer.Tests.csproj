@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Transformer.Tests</RootNamespace>
     <AssemblyName>Transformer.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AESTest.cs" />
+    <Compile Include="CommandLineIntegrationTests.cs" />
     <Compile Include="EnvironmentEncrypterTest.cs" />
     <Compile Include="EnvironmentProviderTest.cs" />
     <Compile Include="EnvironmentSerializationTests.cs" />
@@ -59,13 +61,17 @@
     <Compile Include="ZipPackagesTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Transformer\Transformer.csproj">
-      <Project>{b7a5ffd2-a16d-482c-8d28-4552b3d29aa0}</Project>
-      <Name>Transformer</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Transformer.Core\Transformer.Core.csproj">
+      <Project>{b7a5ffd2-a16d-482c-8d28-4552b3d29aa0}</Project>
+      <Name>Transformer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transformer\Transformer.csproj">
+      <Project>{1fb42f70-f1e6-4b50-8415-d0423f0b3afd}</Project>
+      <Name>Transformer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

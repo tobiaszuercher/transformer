@@ -1,7 +1,8 @@
 ﻿using System.Security.Cryptography;
 using Moq;
 using NUnit.Framework;
-using Transformer.Model;
+using Transformer.Core;
+using Transformer.Core.Model;
 
 namespace Transformer.Tests
 {
@@ -61,7 +62,7 @@ namespace Transformer.Tests
             env.Variables.Add(new Variable() { DoEncrypt = true, Name = "lastname", Value = "Redington" });
             env.EncryptVariables("super-duper-secret-pw!");
 
-            Assert.Throws<CryptographicException>(() => env.DecryptVariables("wrong-pw!"));
+            env.DecryptVariables("wrong-pw!");
 
             Assert.AreNotEqual("Raymond", env["firstname"].Value);
             Assert.AreNotEqual("Redington", env["lastname"].Value);

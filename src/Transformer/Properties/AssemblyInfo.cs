@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Transformer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Zuehlke Technology Group")]
 [assembly: AssemblyProduct("Transformer")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Copyright © Zuehlke Technology Group 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b37ff6be-5802-4342-a105-b11be32f8920")]
+[assembly: Guid("f5b744da-2f1b-4781-9469-66a3efa440e1")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly: InternalsVisibleTo("Transformer.Tests")]

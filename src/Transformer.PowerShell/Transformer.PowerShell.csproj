@@ -48,9 +48,9 @@
     <Compile Include="ProtectEnvironments.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Transformer\Transformer.csproj">
-      <Project>{b7a5ffd2-a16d-482c-8d28-4552b3d29aa0}</Project>
-      <Name>Transformer</Name>
+    <ProjectReference Include="..\Transformer.Core\Transformer.Core.csproj">
+      <Project>{B7A5FFD2-A16D-482C-8D28-4552B3D29AA0}</Project>
+      <Name>Transformer.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

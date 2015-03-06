@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using PowerDeploy.Transformer;
-using PowerDeploy.Transformer.Template;
-using Transformer.Model;
+using Transformer.Core;
+using Transformer.Core.Model;
+using Transformer.Core.Template;
 
 namespace Transformer.Tests
 {
