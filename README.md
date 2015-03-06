@@ -52,11 +52,11 @@ Note: you can use `${env}` which contains the name of the environment.
 </environment>
 ```
 
-The environment files must be stored in a folder called `.powerdeploy`. During transformation, the engine will look for the `.powerdeploy` folder in all parent paths starting with the targeting path.
+The environment files must be stored in a folder called `.transformer`. During transformation, the engine will look for the `.transformer` folder in all parent paths starting with the targeting path.
 
 ### Quickstart for your Project
   1. `Install-Package Transformer.VisualStudio`
-  2. Add a .powerdeploy folder in any direct parent folder from your project
+  2. Add a `.transformer` folder in any direct parent folder from your project
   3. Add environment files "dev.xml"
   4. Add Web.template.config
   5. Start adding variables to the template
