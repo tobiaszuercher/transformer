@@ -41,7 +41,6 @@ namespace Transformer.Core
 
             if (!envFolder.Exists)
             {
-                Log.Warn("Folder " + envFolder.FullName + " is missing!");
                 throw new DirectoryNotFoundException(EnvironmentFolderName + " folder not found with start folder " + startFolder);
             }
 
