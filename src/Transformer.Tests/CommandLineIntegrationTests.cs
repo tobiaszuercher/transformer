@@ -58,7 +58,7 @@ namespace Transformer.Tests
                 Transform("unit", string.Empty);
 
                 // assert
-                Assert.AreEqual("tobi zürcher", dir.ReadFile("app.config"));
+                // todo: howto assert those cases with just std:out?
             }
         }
 

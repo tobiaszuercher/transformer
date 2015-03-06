@@ -84,7 +84,6 @@ function Protect-Environments {
 Export-ModuleMember Switch-Environment
 Export-ModuleMember Protect-Environments
 Export-ModuleMember New-EncryptionKey
-# TODO integrate encryption stuff
 
 Register-TabExpansion 'Switch-Environment' @{ 'environment' = { & $script:transformer_exe list } }
 # Register-TabExpansion 'Switch-Environment' @{ 'environment' = { ((& $transformer_exe list) -split '[\r\n]') |? {$_} } } 
