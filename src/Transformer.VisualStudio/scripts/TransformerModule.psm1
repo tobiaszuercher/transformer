@@ -1,4 +1,5 @@
-﻿$package_folder = Get-ChildItem (Join-Path (Split-Path $dte.Solution.FullName) "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -Last 1
+﻿$sln_dir = Split-Path $dte.Solution.FullName
+$package_folder = Get-ChildItem (Join-Path $sln_dir "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -Last 1
 $transformer_exe = Join-Path $package_folder "tools/transformer.exe"
 
 function Switch-Environment {
@@ -40,41 +41,50 @@ function Switch-Environment {
 	#	Invoke-TransformerDirectoryTransform -Environment $environment -SubEnvironment $SubEnvironment -Directory (Split-Path -parent $_.Fullname) -PasswordFile $PasswordFile -Password $Password }
 }
 
-function Get-Environments {
-	[CmdletBinding()]
-	param()
-	& $script:transformer_exe list
-	#Get-TransformerEnvironmentDir | Get-ChildItem | % { $_.Basename }
-}
-
 function New-EncryptionKey {
 [CmdletBinding()]
 	param(
 		[Parameter] [string]$PasswordFile
 	)
 
-	Invoke-CreateEncryptionKey -PasswordFile $PasswordFile
+	$args = @("create-passwordfile", "--password-file", (Join-Path $script:sln_dir "password.txt"))
+
+	& $script:transformer_exe $args
 }
-
-
-#PM> ls .\packages -Filter Transformer* | sort -Descending | select -First 1
 
 function Protect-Environments {
 	[CmdletBinding()]
 	param(
-		[Parameter()] [string]$PasswordFile,
-		[Parameter()] [string]$Password
+		[Parameter()] [string]$Password,
+		[Parameter()] [string]$PasswordFile
 	)
 
-	Write-Host "Encrypting all variables..."
+	$args = @("encrypt", "--path", $sln_dir)
+	$validation = $false
 
-	Protect-TransformerEnvironments -Directory $pwd -PasswordFile $PasswordFile -Password $Password
+	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
+		$args += "--password-file"
+		$args += $PasswordFile
+		$validation = $true
+	}
+	
+	if ([string]::IsNullOrEmpty($Password) -eq $false) {
+		$args += "--password"
+		$args += $Password
+		$validation = $true
+	}
+
+	if ($PSBoundParameters['Verbose']) {
+		$args += "--verbose"
+	}
+
+	& $script:transformer_exe $args
 }
 
-Export-ModuleMember Get-Environments
 Export-ModuleMember Switch-Environment
-#Export-ModuleMember Encrypt-Environments
-#Export-ModuleMember Create-EncryptionKey
+Export-ModuleMember Protect-Environments
+Export-ModuleMember New-EncryptionKey
 # TODO integrate encryption stuff
 
 Register-TabExpansion 'Switch-Environment' @{ 'environment' = { & $script:transformer_exe list } }
+# Register-TabExpansion 'Switch-Environment' @{ 'environment' = { ((& $transformer_exe list) -split '[\r\n]') |? {$_} } } 

@@ -79,7 +79,7 @@ namespace Transformer
 
         public static void EncryptVariables(string path, string password = "", string passwordFile = "")
         {
-            Log.Info("Encrypting all variables marked with do-encrypt attribute");
+            Log.Debug("Encrypting all variables marked with do-encrypt attribute");
 
             string aesKey = string.Empty;
 

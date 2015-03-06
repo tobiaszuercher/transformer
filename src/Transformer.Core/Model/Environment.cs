@@ -42,12 +42,16 @@ namespace Transformer.Core.Model
 
         public IEnumerable<Variable> EncryptVariables(string aesKey)
         {
+            Log.DebugFormat("Decrypt variables in environment {0}", Name);
+
             var variablesToEncrypt = Variables.Where(p => p.DoEncrypt).ToList();
 
             foreach (var variable in variablesToEncrypt)
             {
                 variable.Encrypt(aesKey);
             }
+
+            Log.DebugFormat("Decrypted {0} variable(s) in {1}", variablesToEncrypt.Count, Name);
 
             return variablesToEncrypt;
         }

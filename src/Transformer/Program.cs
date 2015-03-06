@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
-using NLog;
 using NLog.Config;
 using NLog.Targets;
 using Transformer.Core.Logging;
-using LogManager = NLog.LogManager;
 
 namespace Transformer
 {
@@ -19,14 +16,15 @@ namespace Transformer
 
             logConfig.AddTarget("console", consoleTarget);
 
-            LogManager.Configuration = logConfig;
+            NLog.LogManager.Configuration = logConfig;
             
-            Core.Logging.LogManager.LogFactory = new NLogFactory();
+            LogManager.LogFactory = new NLogFactory();
 
             if (!CommandLine.Parser.Default.ParseArguments(args, options,
                 (verb, subOptions) =>
                 {
-                    logConfig.LoggingRules.Add(new LoggingRule("*", ((OptionsBase)subOptions).Verbose ? LogLevel.Debug : LogLevel.Info, consoleTarget));
+                    if (subOptions != null)
+                        logConfig.LoggingRules.Add(new LoggingRule("*", ((OptionsBase)subOptions).Verbose ? NLog.LogLevel.Debug : NLog.LogLevel.Info, consoleTarget));
 
                     if (verb == "transform")
                     {

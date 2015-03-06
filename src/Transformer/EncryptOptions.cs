@@ -2,7 +2,7 @@
 
 namespace Transformer
 {
-    public class EncryptOptions
+    public class EncryptOptions : OptionsBase
     {
         [Option("path")]
         public string Path { get; set; }

@@ -35,6 +35,7 @@ namespace Transformer.Core.Model
 
         public void Encrypt(string aesKey)
         {
+            Log.DebugFormat("Encrypt variable {0}", Name);
             Value = AES.Encrypt(Value, aesKey);
             DoEncrypt = false;
             Encrypted = true;
@@ -44,6 +45,7 @@ namespace Transformer.Core.Model
         {
             try
             {
+                Log.DebugFormat("Decrypt variable {0}", Name);
                 Value = AES.Decrypt(Value, aesKey);
             }
             catch (CryptographicException e)
