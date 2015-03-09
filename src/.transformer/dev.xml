@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<environment name="local" description="local development" include="">
+	<variable name="name" value="Tobi" />
+	<variable name="enc" value="ZtZq9iuTAZa9VboabFkAPz+rZEWLpWlcGC77DXjrOKPRDhr3622lCeQI21aTA74E" encrypted="true" />
+</environment>
