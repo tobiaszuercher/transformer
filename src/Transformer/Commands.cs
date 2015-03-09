@@ -13,7 +13,14 @@ namespace Transformer
     {
         private static ILog Log = LogManager.GetLogger(typeof (Commands));
 
-        public static bool Transform(string environmentName, string subEnvironmentName, string path, bool deleteTemplates, string environmentDirectory = null, string passwordFile = null, string password = null)
+        public static bool Transform(
+            string environmentName, 
+            string subEnvironmentName, 
+            string path, 
+            bool deleteTemplates, 
+            string environmentDirectory = null, 
+            string passwordFile = null, 
+            string password = null)
         {
             try
             {
