@@ -11,6 +11,6 @@ before_install:
  - sudo installer -pkg "MonoFramework-MDK-${MONO_VERSION}.macos10.xamarin.x86.pkg" -target /
 
 script:
- - xbuild src/Transformer/Transformer.csproj /verbosity:detailed
- - xbuild src/Transformer.Tests/Transformer.Tests.csproj
- - ./build/nunit.sh src/Transformer.Tests/bin/Debug/Transformer.Tests.dll
+ - xbuild src/Transformer/Transformer.csproj
+# - xbuild src/Transformer.Tests/Transformer.Tests.csproj
+# - ./build/nunit.sh src/Transformer.Tests/bin/Debug/Transformer.Tests.dll
