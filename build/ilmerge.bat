@@ -7,4 +7,4 @@ SET INPUT=%INPUT% %RELEASE%\Transformer.Core.dll
 SET INPUT=%INPUT% %RELEASE%\NLog.dll
 SET INPUT=%INPUT% %RELEASE%\CommandLine.dll
 
-%ILMERGE% /target:exe /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5" /out:Transformer.exe /ndebug %INPUT%
+%ILMERGE% /target:exe /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5" /out:../dist/Transformer.exe /ndebug %INPUT%
