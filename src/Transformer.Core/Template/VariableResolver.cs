@@ -12,7 +12,7 @@ namespace Transformer.Core.Template
     /// Variable Syntax:
     /// 
     /// ${host}             without default value
-    /// ${host=localhost}   with default value localhost
+    /// ${host:localhost}   with default value localhost
     /// 
     /// Conditionals:
     /// <!--[if ${condition}]-->

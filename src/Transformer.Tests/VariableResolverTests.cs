@@ -150,6 +150,21 @@ namespace Transformer.Tests
         }
 
         [Test]
+        [Explicit] // todo!
+        public void Set_Subenv_Variable_To_Empty_String_If_Not_Provided()
+        {
+            var variableList = new List<Variable>()
+                               {
+                                   new Variable() { Name = "xxx", Value = "yyy" }
+                               };
+
+            var target = new VariableResolver(variableList);
+            var result = target.TransformVariables("${subenv}");
+
+            Assert.That(string.Empty, Is.EqualTo(result));
+        }
+
+        [Test]
         [TestCase("true")]
         [TestCase("TRUE")]
         [TestCase("on")]
