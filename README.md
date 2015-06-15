@@ -111,3 +111,7 @@ The `include` attribute lets you include the variables from another file. Use co
 
 ideas: 
 TODO: Tool/Integration/Plugin should support your work and not hide the complexity!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tobiaszuercher/transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
