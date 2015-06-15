@@ -11,8 +11,11 @@ namespace Transformer.Core.Template
 
         public VariableResolver VariableResolver { get; set; }
 
-        public int TransformDirectory(string path, Environment targetEnvironment, string subEnvironment = "", bool deleteTemplate = true)
+        public int TransformDirectory(string path, Environment targetEnvironment, string subEnvironment = null, bool deleteTemplate = true)
         {
+            if (subEnvironment == null)
+                subEnvironment = string.Empty;
+
             Log.InfoFormat("Transform templates for environment {1} ind {0} {2} deleting templates", path, targetEnvironment.Name, deleteTemplate ? "with" : "without");
 
             targetEnvironment.Variables.Add(new Variable() { Name = "subenv", Value = subEnvironment });

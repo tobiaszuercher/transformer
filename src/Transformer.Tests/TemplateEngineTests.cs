@@ -11,6 +11,7 @@ namespace Transformer.Tests
     public class TemplateEngineTests
     {
         [Test]
+        [Explicit]
         public void Transform_Package_Test()
         {
             var mock = new Mock<IEnvironmentSerializer>();

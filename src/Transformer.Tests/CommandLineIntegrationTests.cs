@@ -29,6 +29,24 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Bug_Transform_with_null_subenv_reported_missing_variable()
+        {
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                dir.AddFile("unit.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), GetEnvironment().ToXml());
+                dir.AddFile("app.template.config", "${subenv}");
+
+                // act
+                Transform("unit", dir.DirectoryInfo.FullName);
+
+                // assert
+                Assert.AreEqual("", dir.ReadFile("app.config"));
+            }
+        }
+
+        [Test]
         public void Transform_With_Not_Existing_Environment()
         {
             using (var dir = new TestFolder())
