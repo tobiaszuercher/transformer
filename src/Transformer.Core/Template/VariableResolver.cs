@@ -28,7 +28,7 @@ namespace Transformer.Core.Template
         private static readonly ILog Log = LogManager.GetLogger(typeof(VariableResolver));
         public IList<VariableUsage> VariableUsageList { get; private set; }
 
-        private static readonly Regex VariableRegex = new Regex(@"\$\{(?<Name>[^\}]+)\}", RegexOptions.Compiled);
+        public static readonly Regex VariableRegex = new Regex(@"\$\{(?<Name>[^\}]+)\}", RegexOptions.Compiled);
         private static readonly Regex NormalizeRegex = new Regex(@"\r\n|\n\r|\n|\r", RegexOptions.Compiled);
         private static readonly Regex ConditionalOpenRegex = new Regex(@"<!--\s*\[if (?<negate>not)?\s*(?<expression>[^\]]*)]\s*-->", RegexOptions.Compiled);
         private static readonly Regex ConditionalCloseRegex = new Regex(@"<!--\s*\[endif]\s*-->", RegexOptions.Compiled);
@@ -53,6 +53,19 @@ namespace Transformer.Core.Template
             VariableUsageList.Add(variableUsage);
 
             var parsed = variableUsage.GetValueOrDefault(Variables);
+
+            while (VariableRegex.IsMatch(parsed))
+            {
+                parsed = TransformVariables(parsed);
+            }
+
+            return parsed;
+        }
+
+        public string Resolve(string variableName)
+        {
+            var variable = Variables.FirstOrDefault(v => v.Name.ToUpperInvariant() == variableName.ToUpperInvariant());
+            var parsed = variable.Value;
 
             while (VariableRegex.IsMatch(parsed))
             {

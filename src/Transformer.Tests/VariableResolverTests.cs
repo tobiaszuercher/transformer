@@ -110,6 +110,21 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Resolve_Variable_In_Variable_In_Variable_Directly_Test()
+        {
+            var variableList = new List<Variable>()
+                               {
+                                   new Variable() {Name = "a", Value = "a${b}" },
+                                   new Variable() {Name = "b", Value = "b" }
+                               };
+
+            var target = new VariableResolver(variableList);
+            var result = target.Resolve("a");
+
+            Assert.That("ab", Is.EqualTo(result));
+        }
+
+        [Test]
         public void List_Missing_Variables_Test()
         {
             var variableList = new List<Variable>()
