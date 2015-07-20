@@ -30,7 +30,6 @@ namespace Transformer.Core.Model
             Name = name;
             Value = value;
             DoEncrypt = doEncrypt;
-
         }
 
         public void Encrypt(string aesKey)

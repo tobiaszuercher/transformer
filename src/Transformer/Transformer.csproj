@@ -48,10 +48,10 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePasswordOptions.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="CreatePasswordFileOptions.cs" />
     <Compile Include="EncryptOptions.cs" />
-    <Compile Include="EncryptEnvironmentOptions.cs" />
     <Compile Include="ListOption.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />

@@ -51,7 +51,7 @@ namespace Transformer.Core.Model
                 variable.Encrypt(aesKey);
             }
 
-            Log.DebugFormat("Decrypted {0} variable(s) in {1}", variablesToEncrypt.Count, Name);
+            Log.DebugFormat("Encrypted {0} variable(s) in {1}", variablesToEncrypt.Count, Name);
 
             return variablesToEncrypt;
         }
@@ -67,6 +67,21 @@ namespace Transformer.Core.Model
             }
 
             return success;
+        }
+
+        public void ChangePassword(string oldKey, string newKey)
+        {
+            Log.DebugFormat("Changing password for encrypted variables.");
+
+            var variables = Variables.Where(p => p.Encrypted).ToList();
+
+            foreach (var variable in variables)
+            {
+                if (variable.Decrypt(oldKey))
+                {
+                    variable.Encrypt(newKey);
+                }
+            }
         }
     }
 }

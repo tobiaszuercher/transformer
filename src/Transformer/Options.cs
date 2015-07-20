@@ -8,8 +8,8 @@ namespace Transformer
         [VerbOption("transform", HelpText = "Transforms template files...")]
         public TransformOptions TransformVerb { get; set; }
 
-        //[VerbOption("encrypt", HelpText = "Encrypts...")]
-        //public EncryptEnvironmentOptions EncryptEnvrionmentVerb { get; set; }
+        [VerbOption("change-password", HelpText = "Changes the password for all encrypted variables")]
+        public ChangePasswordOptions ChangePasswordVerb { get; set; }
 
         [VerbOption("create-passwordfile", HelpText = "Creates a randomly and secure password and store it in a file.")]
         public CreatePasswordFileOptions CreatePasswordFileVerb { get; set; }
@@ -36,9 +36,11 @@ namespace Transformer
                 AdditionalNewLineAfterOption = true,
                 AddDashesToOption = true
             };
+
             help.AddPreOptionsLine("<<license details here.>>");
             help.AddPreOptionsLine("Usage: app -p Someone");
             help.AddOptions(this);
+            
             return help;
         }
     }

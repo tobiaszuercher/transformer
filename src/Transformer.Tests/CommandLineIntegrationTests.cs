@@ -202,6 +202,32 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Change_password()
+        {
+            using (var dir = new TestFolder())
+            {
+                // arrange
+                var env = new Environment(
+                    "unit-test",
+                    new Variable("var1", "top-secret", true));
+                env.EncryptVariables("first-password");
+                
+                dir.AddFolder(SearchInParentFolderLocator.EnvironmentFolderName);
+                dir.AddFile("unit-test.xml".RelativeTo(SearchInParentFolderLocator.EnvironmentFolderName), env.ToXml());
+
+                // act
+                ChangePassword(dir.DirectoryInfo.FullName, "first-password", "new-password");
+
+                // assert
+                var provider = new EnvironmentProvider(new SearchInParentFolderLocator(dir.DirectoryInfo.FullName));
+                var result = provider.GetEnvironment("unit-test");
+                result.DecryptVariables("new-password");
+
+                Assert.That(result["var1"].Value, Is.EqualTo("top-secret"));
+            }
+        }
+
+        [Test]
         public void Create_Password_File_Generates_Something_Not_Empty()
         {
             using (var dir = new TestFolder())
@@ -234,6 +260,19 @@ namespace Transformer.Tests
                            "--path=" + path,
                            "--password=" + password,
                            "--password-file=" + passwordFile
+                       };
+
+            Program.Main(args.ToArray());
+        }
+
+        private void ChangePassword(string path, string oldPassword, string newPassword)
+        {
+            var args = new List<string>()
+                       {
+                           "change-password",
+                           "--path=" + path,
+                           "--old-password=" + oldPassword,
+                           "--new-password=" + newPassword
                        };
 
             Program.Main(args.ToArray());

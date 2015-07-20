@@ -58,14 +58,30 @@ namespace Transformer.Tests
         public void Decrypt_Variable_WrongPassowrd()
         {
             var env = new Environment();
-            env.Variables.Add(new Variable() { DoEncrypt = true, Name = "firstname", Value = "Raymond" });
-            env.Variables.Add(new Variable() { DoEncrypt = true, Name = "lastname", Value = "Redington" });
+            env.Variables.Add(new Variable { DoEncrypt = true, Name = "firstname", Value = "Raymond" });
+            env.Variables.Add(new Variable { DoEncrypt = true, Name = "lastname", Value = "Redington" });
             env.EncryptVariables("super-duper-secret-pw!");
 
             env.DecryptVariables("wrong-pw!");
 
             Assert.AreNotEqual("Raymond", env["firstname"].Value);
             Assert.AreNotEqual("Redington", env["lastname"].Value);
+        }
+
+        [Test]
+        public void Change_Password()
+        {
+            // arrange
+            var env = new Environment();
+            env.Variables.Add(new Variable { DoEncrypt = true, Name = "firstname", Value = "tobi" });
+            env.EncryptVariables("first-password!");
+
+            // act
+            env.ChangePassword("first-password!", "2nd-password!");
+
+            // assert
+            env.DecryptVariables("2nd-password!");
+            Assert.That(env["firstname"].Value, Is.EqualTo("tobi"));
         }
     }
 }

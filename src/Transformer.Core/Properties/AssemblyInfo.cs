@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Transformer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Transformer.Core")]
+[assembly: AssemblyDescription("Simple but powerfull config file transformer.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Transformer")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("codevision.ch")]
+[assembly: AssemblyProduct("Transformer.Core")]
+[assembly: AssemblyCopyright("Copyright © Tobias Zuercher 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

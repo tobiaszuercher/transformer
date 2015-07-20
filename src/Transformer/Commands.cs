@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Security;
@@ -120,6 +119,14 @@ namespace Transformer
 
             var environmentEncrypter = new EnvironmentEncrypter(new EnvironmentProvider(new SearchInParentFolderLocator(path)), aesKey);
             environmentEncrypter.EncryptAllEnvironments();
+        }
+
+        public static void ChangePassword(string path, string oldPassword, string newPassword)
+        {
+            Log.Debug("Changing password for encrypted variables.");
+
+            var encrypter = new EnvironmentEncrypter(new EnvironmentProvider(new SearchInParentFolderLocator(path)), oldPassword);
+            encrypter.ChangeEncryptionKeyInAllEnvironments(newPassword);
         }
 
         private static string LoadAesKeyIfProvided(string password, string passwordFile = null)

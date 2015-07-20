@@ -53,6 +53,26 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Deserialize_Environment_Urlencoded_Test()
+        {
+            var xml = @"<?xml version=""1.0""?>
+                        <environment name=""local"" description=""Used for unit tests, not a real environment"">
+                          <variable name=""Name1"" value=""Tobi &amp; Oli"" />
+                          <variable name=""Name"" value=""http://stagingreporting.ontimehuv.com/homeCustomMessages?guid={0}&amp;type={1}&amp;languageId={2}"" />
+                        </environment>";
+
+            var serializer = new XmlSerializer(typeof(Environment));
+            var result = serializer.Deserialize(new XmlTextReader(new StringReader(xml))) as Environment;
+
+            Assert.AreEqual("local", result.Name);
+
+            Console.WriteLine(result.Variables[1].Value);
+
+            Assert.AreEqual("Name1", result.Variables[0].Name);
+            Assert.AreEqual("Tobi & Oli", result.Variables[0].Value);
+        }
+
+        [Test]
         public void Deserialize_Environment_With_Include()
         {
             using (var dir = new TestFolder())
@@ -71,8 +91,9 @@ namespace Transformer.Tests
                 var envprovider = new EnvironmentProvider(Path.Combine(dir.DirectoryInfo.FullName));
                 var result = envprovider.GetEnvironment("testenv");
 
-                Assert.AreEqual(3, result.Variables.Count);
-                Assert.AreEqual("TESTENV", result["env"].Value);
+                Assert.AreEqual(4, result.Variables.Count);
+                Assert.AreEqual("TESTENV", result["ENV"].Value);
+                Assert.AreEqual("testenv", result["env"].Value);
                 Assert.AreEqual("jack", result["firstname"].Value);
                 Assert.AreEqual("zuercher", result["lastname"].Value);
             }

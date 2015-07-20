@@ -1,6 +1,10 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
+
 using Transformer.Core.Logging;
+using Transformer.Core.Model;
 
 namespace Transformer.Core
 {
@@ -12,13 +16,17 @@ namespace Transformer.Core
     /// After encryption:
     /// <variable name="Firstname" value="(value-is-now-encrypted)" encrypted="true" />
     /// </summary>
+    /// <remarks>
+    /// This seems to be a little bit nasty because we are string replacing the encrypted value with regex. We do that to keep the
+    /// spacing in your xml!
+    /// </remarks>
     public class EnvironmentEncrypter
     {
-        private const string RegexFormat = @"<variable (?<spaces_name>\s*)(name=""{0}"")(?<spaces_value>\s*)(value=""(?<value>[^""]+)"") do-encrypt=""([^""]*)""";
+        private const string RegexFormat = @"<variable (?<spaces_name>\s*)(name=""{0}"")(?<spaces_value>\s*)(value=""(?<value>[^""]+)"") encrypted=""([^""]*)"" do-encrypt=""([^""]*)""";
+        private static readonly ILog Log = LogManager.GetLogger(typeof(EnvironmentEncrypter));
 
         private readonly string _aesKey;
         private IEnvironmentProvider _envProvider;
-        private ILog Log = LogManager.GetLogger(typeof(EnvironmentEncrypter));
 
         public EnvironmentEncrypter(IEnvironmentProvider environmentProvider, string aesKey)
         {
@@ -34,6 +42,22 @@ namespace Transformer.Core
             }
         }
 
+        public void ChangeEncryptionKeyInAllEnvironments(string newKey)
+        {
+            foreach (var environmentConfigFile in _envProvider.GetEnvironments(false))
+            {
+                ChangeEncryptionKey(environmentConfigFile, newKey);
+            }
+        }
+
+        private void ChangeEncryptionKey(string envFile, string newKey)
+        {
+            var environment = _envProvider.GetEnvironment(envFile.Replace(".xml", string.Empty));
+            
+            environment.ChangePassword(_aesKey, newKey);
+            ReplaceVariablesInEnvironmentAsText(envFile, environment.Variables.Where(v => v.Encrypted));
+        }
+
         private Regex CreateRegexForVariable(string name)
         {
             return new Regex(string.Format(RegexFormat, name));
@@ -42,14 +66,19 @@ namespace Transformer.Core
         private void EncryptEnvironmentConfig(string configFile)
         {
             var environment = _envProvider.GetEnvironment(configFile.Replace(".xml", string.Empty)); // TODO: remove this dirty workaround
-            string environmentAsText = File.ReadAllText(configFile);
-
+            
             var changedVariables = environment.EncryptVariables(_aesKey);
 
+            ReplaceVariablesInEnvironmentAsText(configFile, changedVariables);
+        }
+
+        private void ReplaceVariablesInEnvironmentAsText(string configFile, IEnumerable<Variable> changedVariables)
+        {
+            string environmentAsText = File.ReadAllText(configFile);
             foreach (var variable in changedVariables)
             {
                 var regex = CreateRegexForVariable(variable.Name);
-                
+
                 environmentAsText = regex.Replace(environmentAsText, @"<variable ${spaces_name}name=""" + variable.Name + @"""${spaces_value}value=""" + variable.Value + @""" encrypted=""true""");
 
                 Log.InfoFormat("encrypting variable '{0}'", variable.Name);

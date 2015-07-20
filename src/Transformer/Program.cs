@@ -47,7 +47,7 @@ namespace Transformer
                     }
                     else if (verb == "create-passwordfile")
                     {
-                        var commandOptions = (CreatePasswordFileOptions) subOptions;
+                        var commandOptions = (CreatePasswordFileOptions)subOptions;
 
                         Commands.CreatePasswordFile(commandOptions.PasswordFile);
                     }
@@ -56,6 +56,12 @@ namespace Transformer
                         var commandOptions = (EncryptOptions) subOptions;
 
                         Commands.EncryptVariables(commandOptions.Path, commandOptions.Password, commandOptions.PasswordFile);
+                    }
+                    else if (verb == "change-password")
+                    {
+                        var commandOptions = (ChangePasswordOptions)subOptions;
+
+                        Commands.ChangePassword(commandOptions.Path, commandOptions.OldPassword, commandOptions.NewPassword);
                     }
                     else if (verb == "list")
                     {

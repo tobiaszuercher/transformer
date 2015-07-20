@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Transformer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Simple but powerfull config file transformer.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zuehlke Technology Group")]
+[assembly: AssemblyCompany("codevision.ch")]
 [assembly: AssemblyProduct("Transformer")]
-[assembly: AssemblyCopyright("Copyright © Zuehlke Technology Group 2014")]
+[assembly: AssemblyCopyright("Copyright © Tobias Zuercher 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
