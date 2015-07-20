@@ -59,7 +59,7 @@ function Edit-Password {
 		[Parameter] [string]$NewPassword
 	)
 
-	$args = @("change-password", "--old-password", $OldPassword, "--new-password", $NewPassword, "--path", $script:sln_dir))
+	$args = @("change-password", "--old-password", $OldPassword, "--new-password", $NewPassword, "--path", $script:sln_dir)
 
 	& $script:transformer_exe $args
 }
