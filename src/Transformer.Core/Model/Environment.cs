@@ -77,6 +77,7 @@ namespace Transformer.Core.Model
 
             foreach (var variable in variables)
             {
+                Log.DebugFormat("Old encrypted value: {0}", variable.Value);
                 if (variable.Decrypt(oldKey))
                 {
                     variable.Encrypt(newKey);

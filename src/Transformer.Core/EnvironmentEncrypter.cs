@@ -22,7 +22,7 @@ namespace Transformer.Core
     /// </remarks>
     public class EnvironmentEncrypter
     {
-        private const string RegexFormat = @"<variable (?<spaces_name>\s*)(name=""{0}"")(?<spaces_value>\s*)(value=""(?<value>[^""]+)"") encrypted=""([^""]*)"" do-encrypt=""([^""]*)""";
+        private const string RegexFormat = @"<variable (?<spaces_name>\s*)(name=""{0}"")(?<spaces_value>\s*)(value=""(?<value>[^""]+)"")\s*encrypted=""([^""]*)""\s*(do-encrypt=""([^""]*)"")?";
         private static readonly ILog Log = LogManager.GetLogger(typeof(EnvironmentEncrypter));
 
         private readonly string _aesKey;
@@ -54,6 +54,7 @@ namespace Transformer.Core
         {
             var environment = _envProvider.GetEnvironment(envFile.Replace(".xml", string.Empty));
             
+            Log.DebugFormat("Change password from {0} to {1}", _aesKey, newKey);
             environment.ChangePassword(_aesKey, newKey);
             ReplaceVariablesInEnvironmentAsText(envFile, environment.Variables.Where(v => v.Encrypted));
         }
@@ -78,12 +79,12 @@ namespace Transformer.Core
             foreach (var variable in changedVariables)
             {
                 var regex = CreateRegexForVariable(variable.Name);
-
                 environmentAsText = regex.Replace(environmentAsText, @"<variable ${spaces_name}name=""" + variable.Name + @"""${spaces_value}value=""" + variable.Value + @""" encrypted=""true""");
 
-                Log.InfoFormat("encrypting variable '{0}'", variable.Name);
+                Log.InfoFormat("Replace variable '{0}' value with encrypted value {1}.", variable.Name, variable.Value);
             }
 
+            Log.DebugFormat("Writing to {0}", configFile);
             File.WriteAllText(configFile, environmentAsText);
         }
     }

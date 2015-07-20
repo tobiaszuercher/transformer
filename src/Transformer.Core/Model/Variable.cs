@@ -34,8 +34,8 @@ namespace Transformer.Core.Model
 
         public void Encrypt(string aesKey)
         {
-            Log.DebugFormat("Encrypt variable {0}", Name);
             Value = AES.Encrypt(Value, aesKey);
+            Log.DebugFormat("Encrypted variable {0} to {1}", Name, Value);
             DoEncrypt = false;
             Encrypted = true;
         }
