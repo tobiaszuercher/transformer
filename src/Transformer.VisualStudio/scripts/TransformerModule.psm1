@@ -52,7 +52,7 @@ function New-EncryptionKey {
 	& $script:transformer_exe $args
 }
 
-function Edit-Password {
+function Edit-EncryptionKey {
 [CmdletBinding()]
 	param(
 		[Parameter] [string]$OldPassword,
