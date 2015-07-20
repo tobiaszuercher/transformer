@@ -73,6 +73,7 @@ namespace Transformer.Tests
         }
 
         [Test]
+        [Explicit] // TODO: feature still not pushed
         public void Deserialize_Environment_With_Include()
         {
             using (var dir = new TestFolder())
