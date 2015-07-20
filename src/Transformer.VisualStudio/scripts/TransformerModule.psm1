@@ -52,6 +52,18 @@ function New-EncryptionKey {
 	& $script:transformer_exe $args
 }
 
+function Edit-Password {
+[CmdletBinding()]
+	param(
+		[Parameter] [string]$OldPassword,
+		[Parameter] [string]$NewPassword
+	)
+
+	$args = @("change-password", "--old-password", $OldPassword, "--new-password", $NewPassword, "--path", $script:sln_dir))
+
+	& $script:transformer_exe $args
+}
+
 function Protect-Environments {
 	[CmdletBinding()]
 	param(
@@ -59,7 +71,7 @@ function Protect-Environments {
 		[Parameter()] [string]$PasswordFile
 	)
 
-	$args = @("encrypt", "--path", $sln_dir)
+	$args = @("encrypt", "--path", $script:sln_dir)
 	$validation = $false
 
 	if ([string]::IsNullOrEmpty($PasswordFile) -eq $false) {
@@ -84,6 +96,7 @@ function Protect-Environments {
 Export-ModuleMember Switch-Environment
 Export-ModuleMember Protect-Environments
 Export-ModuleMember New-EncryptionKey
+Export-ModuleMember Edit-EncryptionKey
 
 Register-TabExpansion 'Switch-Environment' @{ 'environment' = { & $script:transformer_exe list } }
 # Register-TabExpansion 'Switch-Environment' @{ 'environment' = { ((& $transformer_exe list) -split '[\r\n]') |? {$_} } } 
