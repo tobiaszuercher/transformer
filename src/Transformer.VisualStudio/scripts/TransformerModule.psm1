@@ -44,7 +44,7 @@ function Switch-Environment {
 function New-EncryptionKey {
 [CmdletBinding()]
 	param(
-		[Parameter] [string]$PasswordFile
+		[Parameter()] [string]$PasswordFile
 	)
 
 	$args = @("create-passwordfile", "--password-file", (Join-Path $script:sln_dir "password.txt"))
@@ -55,8 +55,8 @@ function New-EncryptionKey {
 function Edit-EncryptionKey {
 [CmdletBinding()]
 	param(
-		[Parameter] [string]$OldPassword,
-		[Parameter] [string]$NewPassword
+		[Parameter(Position = 1)] [string]$OldPassword,
+		[Parameter(Position = 2)] [string]$NewPassword
 	)
 
 	$args = @("change-password", "--old-password", $OldPassword, "--new-password", $NewPassword, "--path", $script:sln_dir)
