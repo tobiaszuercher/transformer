@@ -65,6 +65,10 @@ namespace Transformer.Core.Template
         public string Resolve(string variableName)
         {
             var variable = Variables.FirstOrDefault(v => v.Name.ToUpperInvariant() == variableName.ToUpperInvariant());
+
+            if (variable == null)
+                return null;
+
             var parsed = variable.Value;
 
             while (VariableRegex.IsMatch(parsed))

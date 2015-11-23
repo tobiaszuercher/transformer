@@ -110,6 +110,20 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Resolve_Not_Existing_Variable_Returns_Null()
+        {
+            var variableList = new List<Variable>()
+                               {
+                                   new Variable() {Name = "A", Value = "A"},
+                               };
+
+            var target = new VariableResolver(variableList);
+            var result = target.Resolve("b");
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
         public void Resolve_Variable_In_Variable_In_Variable_Directly_Test()
         {
             var variableList = new List<Variable>()
