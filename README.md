@@ -110,7 +110,7 @@ Basic structure:
 The `include` attribute lets you include the variables from another file. Use comma to separate different files. This is useful for variables which have the same value in multiple environments, so you don't have to copy and paste those variables. It's important that the included variables won't overwrite any existing variable! See the Best Practices Chapter for more detaiils how to use this feature properly.
 
 ### Encrypting values
-Add `do-encrypt="true"` on an variable entry which should get decrypted:
+Add `do-encrypt="true"` on an variable entry which should get encrypted:
 
 ```xml
 <variable name="api.key" value="hfbduio897hn" do-encrypt="true"/>
