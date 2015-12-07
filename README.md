@@ -129,9 +129,8 @@ Result:
 
 We really just replace your value, your formatting (eg. tabs or spaces) won't change!
 
-ideas: 
-TODO: Tool/Integration/Plugin should support your work and not hide the complexity!
+##Contributors
+- [olibanjoli](https://github.com/olibanjoli) (Oliver Zürcher)
+- [michaelschnyder](https://github.com/michaelschnyder) (Michael Schnyder)
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tobiaszuercher/transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+Thank you all for any contribution <3
