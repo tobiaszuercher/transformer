@@ -17,6 +17,9 @@ With Visual Studio file nesting it looks like other generated code:
 
 ![Visual Studio file nesting](https://raw.githubusercontent.com/tobiaszuercher/transformer/master/doc/images/template_nesting.png)
 
+Install the awesome File Nesting Extension for Visual Studio by 
+Mads Kristensen: https://visualstudiogallery.msdn.microsoft.com/3ebde8fb-26d8-4374-a0eb-1e4e2665070c 
+
 Inside the template file you can use `${variable}` as placeholders. Example:
 
 ```xml
