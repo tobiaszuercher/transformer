@@ -16,7 +16,7 @@ namespace Transformer.Core.Template
             if (subEnvironment == null)
                 subEnvironment = string.Empty;
 
-            Log.InfoFormat("Transform templates for environment {1} ind {0} {2} deleting templates", path, targetEnvironment.Name, deleteTemplate ? "with" : "without");
+            Log.InfoFormat("Transform templates for environment {1} in {0} {2} deleting templates", path, targetEnvironment.Name, deleteTemplate ? "with" : "without");
 
             targetEnvironment.Variables.Add(new Variable() { Name = "subenv", Value = subEnvironment });
 
