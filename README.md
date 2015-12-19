@@ -116,7 +116,7 @@ The `include` attribute lets you include the variables from another file. Use co
 Add `do-encrypt="true"` on an variable entry which should get encrypted:
 
 ```xml
-<variable name="api.key" value="hfbduio897hn" do-encrypt="true"/>
+<variable name="api.key" value="hfbduio897hn" encrypted="false" do-encrypt="true"/>
 ```
 
 Use `Protect-Environments -Password yourpassword` to scan through all environment files and encrypt each variable with `do-encrypt="true"`.
