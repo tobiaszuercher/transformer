@@ -104,13 +104,14 @@ namespace Transformer.Core.Template
 
             var splitted = usage.Split(':');
 
-            if (splitted.Count() != 2)
-                throw new InvalidOperationException("Wrong format of variable usage. Use ${var} or ${var:defaultvalue}.");
+            // TODO: be more relaxed: allow doppelpunkt here
+            //if (splitted.Count() != 2)
+            //    throw new InvalidOperationException("Wrong format of variable usage. Use ${var} or ${var:defaultvalue}.");
 
             var foundVariable = variables.FirstOrDefault(v => v.Name == splitted[0]);
 
             Variable = foundVariable ?? new Variable() { Name = splitted[0] };
-            DefaultValue = splitted[1];
+            DefaultValue = usage.Substring(usage.IndexOf(':') + 1);
         }
     }
 }

@@ -94,6 +94,19 @@ namespace Transformer.Tests
         }
 
         [Test]
+        public void Resolve_Variable_In_Variable_Test_Doppelpunkt()
+        {
+            var variableList = new List<Variable>()
+                {
+                };
+
+            var target = new VariableResolver(variableList);
+            var result = target.TransformVariables("Hello ${Fullname:11:00:00}!");
+
+            Assert.AreEqual("Hello 11:00:00!", result);
+        }
+
+        [Test]
         public void Resolve_Variable_In_Variable_In_Variable_Test()
         {
             var variableList = new List<Variable>()
