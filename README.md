@@ -17,6 +17,9 @@ With Visual Studio file nesting it looks like other generated code:
 
 ![Visual Studio file nesting](https://raw.githubusercontent.com/tobiaszuercher/transformer/master/doc/images/template_nesting.png)
 
+Install the awesome File Nesting Extension for Visual Studio by 
+Mads Kristensen: https://visualstudiogallery.msdn.microsoft.com/3ebde8fb-26d8-4374-a0eb-1e4e2665070c 
+
 Inside the template file you can use `${variable}` as placeholders. Example:
 
 ```xml
@@ -109,9 +112,25 @@ Basic structure:
 ### Include Attribute:
 The `include` attribute lets you include the variables from another file. Use comma to separate different files. This is useful for variables which have the same value in multiple environments, so you don't have to copy and paste those variables. It's important that the included variables won't overwrite any existing variable! See the Best Practices Chapter for more detaiils how to use this feature properly.
 
-ideas: 
-TODO: Tool/Integration/Plugin should support your work and not hide the complexity!
+### Encrypting values
+Add `do-encrypt="true"` on an variable entry which should get encrypted:
 
+```xml
+<variable name="api.key" value="hfbduio897hn" do-encrypt="true"/>
+```
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tobiaszuercher/transformer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+Use `Protect-Environments -Password yourpassword` to scan through all environment files and encrypt each variable with `do-encrypt="true"`.
 
+Result:
+
+```xml
+<variable name="api.key" value="f334fg453tg5454h462httrhtrhtrw" encrypted="true"/>
+```
+
+We really just replace your value, your formatting (eg. tabs or spaces) won't change!
+
+##Contributors
+- [olibanjoli](https://github.com/olibanjoli) (Oliver Zürcher)
+- [michaelschnyder](https://github.com/michaelschnyder) (Michael Schnyder)
+
+Thank you all for any contribution <3
