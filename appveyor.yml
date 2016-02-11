@@ -11,7 +11,7 @@
     nuget_api_key:
       secure: TODO
   before_build:
-    - ps: nuget restore
+    - ps: nuget restore src/Transformer.sln
     - ps: gitversion /l console /output buildserver /updateassemblyinfo /b (get-item env:APPVEYOR_REPO_BRANCH).Value
   build:
     project: src/Transformer.sln
