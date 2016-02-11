@@ -18,7 +18,7 @@
     verbosity: minimal
   test: off
   after_build:
-    - ps: nuget pack nuget/Transformer.VisualStudio.nuspec -Version (get-item env:GitVersion_InformationalVersion).Value
+    - ps: nuget pack nuget/Transformer.VisualStudio.nuspec -Version (get-item env:GitVersion_NuGetVersion).Value
     - ps: if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER){ nuget push *.nupkg -ApiKey (get-item env:nuget_api_key).Value -Source https://nuget.org/TODO  }
 - 
   branches:
