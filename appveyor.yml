@@ -19,7 +19,9 @@
   test: off
   after_build:
     - ps: nuget pack nuget/Transformer.VisualStudio.nuspec -Version (get-item env:GitVersion_NuGetVersion).Value
+    - ps: nuget pack nuget/Transformer.Core.nuspec -Version (get-item env:GitVersion_NuGetVersion).Value
     - cmd: appveyor PushArtifact "Transformer.VisualStudio.%GitVersion_NuGetVersion%.nupkg"
+    - cmd: appveyor PushArtifact "Transformer.Core.%GitVersion_NuGetVersion%.nupkg"
     #- ps: if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER){ nuget push *.nupkg -ApiKey (get-item env:nuget_api_key).Value -Source https://nuget.org/TODO  }
 - 
   branches:
