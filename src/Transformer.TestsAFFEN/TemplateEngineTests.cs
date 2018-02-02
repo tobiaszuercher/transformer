@@ -1,14 +1,28 @@
 ﻿using System.Collections.Generic;
+using Moq;
+using NUnit.Framework;
 using Transformer;
 using Transformer.Model;
 using Transformer.Template;
-using Xunit;
 
 namespace Transformer.Tests
 {
+    [TestFixture]
     public class TemplateEngineTests
     {
-        [Fact]
+        [Test]
+        [Explicit]
+        public void Transform_Package_Test()
+        {
+            var mock = new Mock<IEnvironmentSerializer>();
+            mock.Setup(provider => provider.Deserialize("unit")).Returns(GetUnitEnvironment());
+
+            var target = new TemplateEngine();
+            ////target.ConfigurePackage(@"c:\temp\nuget\Testpackage.1.0.0.nupkg", "DEV", @"c:\temp\");
+            /// // TODO:
+        }
+
+        [Test]
         public void Transform_Read_Only_File()
         {
             var mock = new Mock<IEnvironmentSerializer>();
@@ -22,11 +36,11 @@ namespace Transformer.Tests
                 
                 target.TransformDirectory(dir.DirectoryInfo.FullName, GetUnitEnvironment());
 
-                Assert.NotEqual("will be transformed", dir.ReadFile("read-only.txt"));
+                Assert.AreNotEqual("will be transformed", dir.ReadFile("read-only.txt"));
             }
         }
 
-        [Fact]
+        [Test]
         public void Sub_Environments_Are_Parsed()
         {
             var mock = new Mock<IEnvironmentSerializer>();
@@ -40,7 +54,7 @@ namespace Transformer.Tests
 
                 target.TransformDirectory(dir.DirectoryInfo.FullName, GetUnitEnvironment(), "_bugfix1337");
 
-                Assert.Equal("subenv: _bugfix1337", dir.ReadFile("app.config"));
+                Assert.AreEqual("subenv: _bugfix1337", dir.ReadFile("app.config"));
             }
         }
 

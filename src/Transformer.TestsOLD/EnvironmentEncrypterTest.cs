@@ -1,14 +1,15 @@
-﻿using Moq;
-using Transformer;
+﻿using System.Security.Cryptography;
+using Moq;
+using NUnit.Framework;
 using Transformer.Core;
-using Transformer.Model;
-using Xunit;
+using Transformer.Core.Model;
 
 namespace Transformer.Tests
 {
+    [TestFixture]
     public class EnvironmentEncrypterTest
     {
-        [Fact]
+        [Test]
         public void Encrypt_Environment()
         {
             var env = new Environment();
@@ -22,7 +23,7 @@ namespace Transformer.Tests
             encrypter.EncryptAllEnvironments();
         }
 
-        [Fact]
+        [Test]
         public void Encrypt_Variable()
         {
             var env = new Environment();
@@ -32,11 +33,11 @@ namespace Transformer.Tests
 
             env.EncryptVariables("gugus");
 
-            Assert.NotEqual("secret", env["encrypted-var"].Value);
-            Assert.NotEqual("secret", env["another-secret-pw"].Value);
+            Assert.AreNotEqual("secret", env["encrypted-var"].Value);
+            Assert.AreNotEqual("secret", env["another-secret-pw"].Value);
         }
 
-        [Fact]
+        [Test]
         public void Decrypt_Variable()
         {
             var env = new Environment();
@@ -44,16 +45,16 @@ namespace Transformer.Tests
             env.Variables.Add(new Variable() { DoEncrypt = true, Name = "two", Value = "2" });
             env.EncryptVariables("super-duper-secret-pw!");
 
-            Assert.NotEqual("1", env["one"].Value);
-            Assert.NotEqual("2", env["two"].Value);
+            Assert.AreNotEqual("1", env["one"].Value);
+            Assert.AreNotEqual("2", env["two"].Value);
 
             env.DecryptVariables("super-duper-secret-pw!");
 
-            Assert.Equal("1", env["one"].Value);
-            Assert.Equal("2", env["two"].Value);
+            Assert.AreEqual("1", env["one"].Value);
+            Assert.AreEqual("2", env["two"].Value);
         }
 
-        [Fact]
+        [Test]
         public void Decrypt_Variable_WrongPassowrd()
         {
             var env = new Environment();
@@ -63,11 +64,11 @@ namespace Transformer.Tests
 
             env.DecryptVariables("wrong-pw!");
 
-            Assert.NotEqual("Raymond", env["firstname"].Value);
-            Assert.NotEqual("Redington", env["lastname"].Value);
+            Assert.AreNotEqual("Raymond", env["firstname"].Value);
+            Assert.AreNotEqual("Redington", env["lastname"].Value);
         }
 
-        [Fact]
+        [Test]
         public void Change_Password()
         {
             // arrange
@@ -80,7 +81,7 @@ namespace Transformer.Tests
 
             // assert
             env.DecryptVariables("2nd-password!");
-            Assert.Equal(env["firstname"].Value, "tobi");
+            Assert.That(env["firstname"].Value, Is.EqualTo("tobi"));
         }
     }
 }
