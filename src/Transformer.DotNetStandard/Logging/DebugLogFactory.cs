@@ -1,34 +1,23 @@
 ﻿using System;
 
-using Microsoft.Build.Utilities;
-using Transformer.Core.Logging;
-using Transformer.MsBuild;
-
-namespace PowerDeploy.MsBuild
+namespace Transformer.Core.Logging
 {
     /// <summary>
-    /// Uses a cmdlet to log to
+    /// Creates a Debug Logger, that logs all messages to: System.Diagnostics.Debug
     /// 
     /// Made public so its testable
     /// </summary>
     /// <remarks>https://github.com/ServiceStackV3/ServiceStackV3 BSD Licence.</remarks>
-    public class BuildLogFactory : ILogFactory
+    public class DebugLogFactory : ILogFactory
     {
-        private readonly TaskLoggingHelper _taskLogHelper;
-
-        public BuildLogFactory(TaskLoggingHelper taskLogHelper)
-        {
-            _taskLogHelper = taskLogHelper;
-        }
-
         public ILog GetLogger(Type type)
         {
-            return new MsBuildLogger(_taskLogHelper);
+            return new DebugLogger(type);
         }
 
         public ILog GetLogger(string typeName)
         {
-            return new MsBuildLogger(_taskLogHelper);
+            return new DebugLogger(typeName);
         }
 
         public void DisableLogging()

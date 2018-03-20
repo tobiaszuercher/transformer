@@ -38,7 +38,6 @@ namespace Transformer.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(DirectoryNotFoundException))]
         public void Find_Environment_With_Dir_Not_Existing()
         {
             using (var workDir = new TestFolder(Environment.SpecialFolder.LocalApplicationData))
@@ -47,12 +46,11 @@ namespace Transformer.Tests
                 workDir.AddFolder("dir1/subdir1");
 
                 var target = new EnvironmentProvider(new SearchInParentFolderLocator(Path.Combine(workDir.DirectoryInfo.FullName, "dir1/subdir1")));
-                target.GetEnvironment("unittest");
+                Assert.Throws<DirectoryNotFoundException>(() => target.GetEnvironment("unittest"));
             }
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
         public void Find_Non_Existing_Environment()
         {
             using (var workDir = new TestFolder(Environment.SpecialFolder.LocalApplicationData))
@@ -62,7 +60,7 @@ namespace Transformer.Tests
                 workDir.AddFolder("dir1/subdir1");
 
                 var target = new EnvironmentProvider(Path.Combine(workDir.DirectoryInfo.FullName, "dir1/subdir1"));
-                target.GetEnvironment("unittest");
+                Assert.Throws<FileNotFoundException>(() => target.GetEnvironment("unittest"));
             }
         }
 

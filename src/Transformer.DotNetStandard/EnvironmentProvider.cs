@@ -29,7 +29,7 @@ namespace Transformer.Core
 
             if (!File.Exists(environmentFile))
             {
-                throw new FileNotFoundException("Environment file for environment '{0}' not found.".Fmt(environmentName), environmentFile);    
+                throw new FileNotFoundException("Environment file for environment '{0}' not found.".Fmt(environmentName), environmentFile);
             }
 
             var environment = Serializer.Deserialize(environmentFile);

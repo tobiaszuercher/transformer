@@ -249,7 +249,7 @@ namespace Transformer.Tests
             if (!string.IsNullOrEmpty(password))
                 args.Add("--password=" + password);
 
-            Program.Main(args.ToArray());
+            //Program.Main(args.ToArray());
         }
 
         private void EncryptVariables(string path, string password = "", string passwordFile = "")
@@ -262,7 +262,7 @@ namespace Transformer.Tests
                            "--password-file=" + passwordFile
                        };
 
-            Program.Main(args.ToArray());
+            //Program.Main(args.ToArray());
         }
 
         private void ChangePassword(string path, string oldPassword, string newPassword)
@@ -275,14 +275,14 @@ namespace Transformer.Tests
                            "--new-password=" + newPassword
                        };
 
-            Program.Main(args.ToArray());
+            //Program.Main(args.ToArray());
         }
 
         private void CreatePasswordFile(string filename)
         {
             var args = new List<string>() { "create-passwordfile", "--password-file=" + filename };
 
-            Program.Main(args.ToArray());
+            //Program.Main(args.ToArray());
         }
 
         private Environment GetEnvironment()

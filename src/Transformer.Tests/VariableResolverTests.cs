@@ -375,7 +375,7 @@ namespace Transformer.Tests
         }
 
         [Test]
-        [Ignore] // TODO: add warning also for default values
+        [Ignore("TODO: add warning also for default values")]
         public void Resolve_Default_Value_With_Missing_Variable_Test()
         {
             var variableList = new List<Variable>()
