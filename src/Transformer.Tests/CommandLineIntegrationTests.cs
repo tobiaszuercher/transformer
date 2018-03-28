@@ -278,7 +278,7 @@ namespace Transformer.Tests
             var args = new List<string>()
                        {
                            "change-password",
-                           "--path ",
+                           "--path",
                            path,
                            "--old-password",
                            oldPassword,
