@@ -193,6 +193,7 @@ namespace Transformer.Tests
 
         [Test]
         [Explicit] // todo!
+        [Ignore("TODO")]
         public void Set_Subenv_Variable_To_Empty_String_If_Not_Provided()
         {
             var variableList = new List<Variable>()

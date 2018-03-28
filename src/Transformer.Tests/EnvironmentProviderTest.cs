@@ -45,8 +45,10 @@ namespace Transformer.Tests
                 workDir.AddFolder("dir1");
                 workDir.AddFolder("dir1/subdir1");
 
-                var target = new EnvironmentProvider(new SearchInParentFolderLocator(Path.Combine(workDir.DirectoryInfo.FullName, "dir1/subdir1")));
-                Assert.Throws<DirectoryNotFoundException>(() => target.GetEnvironment("unittest"));
+
+                Assert.Throws<DirectoryNotFoundException>(() =>
+                    new EnvironmentProvider(
+                        new SearchInParentFolderLocator(Path.Combine(workDir.DirectoryInfo.FullName, "dir1/subdir1"))));
             }
         }
 

@@ -1,12 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using CommandLine;
 
 namespace Transformer.Cli
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+         public static int Main(string[] args) {
+            return Parser.Default.ParseArguments<TransformOptions, EncryptOptions, ListOptions>(args)
+                .MapResult(
+                    (TransformOptions opts) => Transform(opts),
+                    (EncryptOptions opts) => Encrypt(opts),
+                    (ListOptions opts) => ListEnvironments(opts),
+                    errs => 1);
+        }
+
+        private static int ListEnvironments(ListOptions opts)
         {
-            Console.WriteLine("Hello World!");
+            
+        }
+
+        private static  int Encrypt(EncryptOptions opts)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static int Transform(TransformOptions opts)
+        {
+            throw new NotImplementedException();
         }
     }
 }
