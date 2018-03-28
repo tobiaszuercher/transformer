@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Environment = Transformer.Core.Model.Environment;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {

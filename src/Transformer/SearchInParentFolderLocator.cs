@@ -1,8 +1,8 @@
 using System.IO;
 using System.Linq;
-using Transformer.Core.Logging;
+using Transformer.Logging;
 
-namespace Transformer.Core
+namespace Transformer
 {
     public class SearchInParentFolderLocator : StaticFolderEnvironmentLocator
     {

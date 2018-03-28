@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     public class NLogLogger : ILog
     {

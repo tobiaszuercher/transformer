@@ -4,9 +4,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using NUnit.Framework;
-using Transformer.Core;
-using Transformer.Core.Model;
-using Environment = Transformer.Core.Model.Environment;
+using Transformer.Model;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {

@@ -2,11 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Transformer.Logging;
+using Transformer.Model;
 
-using Transformer.Core.Logging;
-using Transformer.Core.Model;
-
-namespace Transformer.Core
+namespace Transformer
 {
     /// <summary>
     /// Class to encrypt variables in environments. If they have a do-encrypt attribute, the value will be encrypted using the _aesKey.

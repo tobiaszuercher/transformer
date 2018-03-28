@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Environment = Transformer.Core.Model.Environment;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {

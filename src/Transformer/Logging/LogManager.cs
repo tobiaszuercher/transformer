@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     /// <summary>
     /// Logging API for this library. You can inject your own implementation otherwise

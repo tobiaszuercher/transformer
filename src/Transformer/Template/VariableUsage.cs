@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Transformer.Core.Logging;
-using Transformer.Core.Model;
+using Transformer.Logging;
+using Transformer.Model;
 
-namespace Transformer.Core.Template
+namespace Transformer.Template
 {
     /// <summary>
     /// Used for a usage of a variable. The followings notation is supported:

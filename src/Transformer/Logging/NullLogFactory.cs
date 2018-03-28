@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     /// <summary>
     /// Creates a NLogLogger, that logs all messages with NLog.

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ServiceStack;
-using Environment = Transformer.Core.Model.Environment;
+using Environment = Transformer.Model.Environment;
 
-namespace Transformer.Core
+namespace Transformer
 {
     public class EnvironmentProvider : IEnvironmentProvider
     {

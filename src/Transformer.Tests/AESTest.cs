@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using Transformer.Core.Cryptography;
+using Transformer.Cryptography;
 
 namespace Transformer.Tests
 {

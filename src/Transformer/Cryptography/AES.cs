@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
-namespace Transformer.Core.Cryptography
+namespace Transformer.Cryptography
 {
     /// <summary>
     /// A simple wrapper to the AesManaged class and the AES algorithm.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     /// <summary>
     /// Factory to create ILog instances

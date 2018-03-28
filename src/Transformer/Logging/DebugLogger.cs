@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     /// <summary>
     /// Default logger is to System.Diagnostics.Debug.WriteLine

@@ -1,4 +1,4 @@
-﻿namespace Transformer.Core
+﻿namespace Transformer
 {
     public interface IEnvironmentFolderLocator
     {

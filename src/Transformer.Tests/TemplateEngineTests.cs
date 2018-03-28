@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using Transformer.Core;
-using Transformer.Core.Model;
-using Transformer.Core.Template;
+using Transformer.Model;
+using Transformer.Template;
 
 namespace Transformer.Tests
 {

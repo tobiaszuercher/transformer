@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
-using Transformer.Core;
-using Transformer.Core.Model;
-using Environment = Transformer.Core.Model.Environment;
+using Transformer.Model;
+using Environment = Transformer.Model.Environment;
 
 namespace Transformer.Tests
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transformer.Core.Logging
+namespace Transformer.Logging
 {
     /// <summary>
     /// Creates a Debug Logger, that logs all messages to: System.Diagnostics.Debug

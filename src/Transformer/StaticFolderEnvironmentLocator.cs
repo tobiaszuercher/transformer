@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Transformer.Core
+namespace Transformer
 {
     public class StaticFolderEnvironmentLocator : IEnvironmentFolderLocator
     {

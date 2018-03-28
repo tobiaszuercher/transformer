@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Transformer.DotNetStandard
+namespace Transformer
 {
     public static class StringExtensions
     {

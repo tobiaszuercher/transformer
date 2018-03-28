@@ -17,7 +17,9 @@ namespace Transformer.Cli
 
         private static int ListEnvironments(ListOptions opts)
         {
-            
+            Commands.List(Environment.CurrentDirectory);
+
+            return 1337;
         }
 
         private static  int Encrypt(EncryptOptions opts)

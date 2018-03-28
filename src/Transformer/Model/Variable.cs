@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Xml.Serialization;
-using Transformer.Core.Cryptography;
-using Transformer.Core.Logging;
+using Transformer.Cryptography;
+using Transformer.Logging;
 
-namespace Transformer.Core.Model
+namespace Transformer.Model
 {
     public class Variable
     {

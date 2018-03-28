@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using Transformer.Core.Logging;
+using Transformer.Logging;
 
-namespace Transformer.Core.Model
+namespace Transformer.Model
 {
     [XmlRoot("environment", Namespace = "")]
     public class Environment

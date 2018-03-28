@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Transformer.Core.Logging;
-using Transformer.Core.Model;
-using Transformer.DotNetStandard;
+using Transformer.Logging;
+using Transformer.Model;
 
-namespace Transformer.Core.Template
+namespace Transformer.Template
 {
     public class TemplateEngine
     {

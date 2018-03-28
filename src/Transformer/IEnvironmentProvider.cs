@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Transformer.Core.Model;
+using Transformer.Model;
 
-namespace Transformer.Core
+namespace Transformer
 {
     public interface IEnvironmentProvider
     {

@@ -2,8 +2,7 @@
 using System.IO;
 using System.Linq;
 using NLog.Fluent;
-using Transformer.Core;
-using Transformer.Core.Template;
+using Transformer.Template;
 
 namespace Transformer.Cli
 {
