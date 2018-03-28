@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using Transformer.Cli;
 using Transformer.Model;
 using Environment = Transformer.Model.Environment;
 
@@ -240,15 +241,18 @@ namespace Transformer.Tests
 
         private void Transform(string environmentName = "", string path = "", string password = "", string passwordFile = "", bool deleteTemplates = false)
         {
-            var args = new List<string>() { "transform", "--environment=" + environmentName, "--path=" + path, "--password-file=" + passwordFile };
+            var args = new List<string>() { "transform", "--environment " + environmentName, "--path " + path};
 
             if (deleteTemplates)
                 args.Add("--delete-templates");
 
             if (!string.IsNullOrEmpty(password))
-                args.Add("--password=" + password);
+                args.Add("--password " + password);
 
-            //Program.Main(args.ToArray());
+            if (!string.IsNullOrEmpty(passwordFile))
+                args.Add("--password-file " + passwordFile);
+            
+            Program.Main(args.ToArray());
         }
 
         private void EncryptVariables(string path, string password = "", string passwordFile = "")
@@ -256,12 +260,16 @@ namespace Transformer.Tests
             var args = new List<string>()
                        {
                            "encrypt",
-                           "--path=" + path,
-                           "--password=" + password,
-                           "--password-file=" + passwordFile
+                           "--path " + path
                        };
+            
+            if (!string.IsNullOrEmpty(password))
+                args.Add("--password " + password);
 
-            //Program.Main(args.ToArray());
+            if (!string.IsNullOrEmpty(passwordFile))
+                args.Add("--password-file " + passwordFile);
+
+            Program.Main(args.ToArray());
         }
 
         private void ChangePassword(string path, string oldPassword, string newPassword)
@@ -269,19 +277,19 @@ namespace Transformer.Tests
             var args = new List<string>()
                        {
                            "change-password",
-                           "--path=" + path,
-                           "--old-password=" + oldPassword,
-                           "--new-password=" + newPassword
+                           "--path " + path,
+                           "--old-password " + oldPassword,
+                           "--new-password " + newPassword
                        };
 
-            //Program.Main(args.ToArray());
+            Program.Main(args.ToArray());
         }
 
         private void CreatePasswordFile(string filename)
         {
-            var args = new List<string>() { "create-passwordfile", "--password-file=" + filename };
+            var args = new List<string>() { "create-passwordfile", "--password-file " + filename };
 
-            //Program.Main(args.ToArray());
+            Program.Main(args.ToArray());
         }
 
         private Environment GetEnvironment()

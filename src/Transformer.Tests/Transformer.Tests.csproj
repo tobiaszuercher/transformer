@@ -9,6 +9,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Transformer.Cli\Transformer.Cli.csproj" />
     <ProjectReference Include="..\Transformer\Transformer.csproj" />
   </ItemGroup>
 </Project>
