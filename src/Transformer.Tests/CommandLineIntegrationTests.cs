@@ -260,7 +260,7 @@ namespace Transformer.Tests
             var args = new List<string>()
                        {
                            "encrypt",
-                           "--path ",
+                           "--path",
                            path,
                        };
             

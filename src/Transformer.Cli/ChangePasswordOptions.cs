@@ -2,7 +2,7 @@
 
 namespace Transformer.Cli
 {
-    [Verb("change password")]
+    [Verb("change-password")]
     public class ChangePasswordOptions
     {
         [Option('o', "old-password")]

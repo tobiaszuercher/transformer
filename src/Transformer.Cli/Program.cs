@@ -10,7 +10,12 @@ namespace Transformer.Cli
     public class Program
     {
          public static int Main(string[] args) {
-            var bla = Parser.Default.ParseArguments<TransformOptions, EncryptOptions, ListOptions>(args)
+            var bla = Parser.Default.ParseArguments<
+                    TransformOptions, 
+                    EncryptOptions, 
+                    ListOptions, 
+                    ChangePasswordOptions, 
+                    CreatePasswordFileOptions>(args)
                 .MapResult(
                     (TransformOptions opts) => Transform(opts),
                     (EncryptOptions opts) => Encrypt(opts),
@@ -64,8 +69,8 @@ namespace Transformer.Cli
                 opts.Path,
                 opts.DeleteTemplates,
                 opts.EnvironmentPath,
-                opts.Password,
-                opts.PasswordFile);
+                opts.PasswordFile,
+                opts.Password);
 
             return 0;
         }
