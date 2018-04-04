@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using NLog.Fluent;
+using Transformer.Cryptography;
 using Transformer.Template;
 
 namespace Transformer.Cli
@@ -71,12 +72,12 @@ namespace Transformer.Cli
 
         public static void CreatePasswordFile(string filename)
         {
-//            var password = Membership.GeneratePassword(64, 0); // TODO: this uses System.Web. Check if there is a better way to generate the pw.
-//            var targetPath = Path.GetFullPath(filename);
-//            
-//            File.WriteAllText(targetPath, password);
-//
-//            Log.InfoFormat("Created password in file {0}", targetPath);
+            var password = RandomStringProvider.Provide(64); // TODO: this uses System.Web. Check if there is a better way to generate the pw.
+            var targetPath = Path.GetFullPath(filename);
+            
+            File.WriteAllText(targetPath, password);
+
+            //Log.InfoFormat("Created password in file {0}", targetPath);
         }
 
         public static void EncryptVariables(string path, string password = "", string passwordFile = "")
