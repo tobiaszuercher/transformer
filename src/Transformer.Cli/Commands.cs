@@ -1,15 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using NLog.Fluent;
 using Transformer.Cryptography;
+using Transformer.Logging;
 using Transformer.Template;
 
 namespace Transformer.Cli
 {
     public class Commands
     {
-        public static bool Transform(
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
+
+        public static int Transform(
             string environmentName, 
             string subEnvironmentName, 
             string path, 
@@ -52,32 +54,43 @@ namespace Transformer.Cli
             {
                 Log.Warn(SearchInParentFolderLocator.EnvironmentFolderName + " folder not found for " + path + "!");
 
-                return false;
+                return 1;
             }
             catch (ArgumentException)
             {
                 Log.Warn("Provided path is invalid.");
 
-                return false;
+                return 1;
             }
             catch (FileNotFoundException exception)
             {
                 Log.Error(exception.Message);
 
-                return false;
+                return 1;
             }
 
-            return true;
+            return 0;
         }
 
-        public static void CreatePasswordFile(string filename)
+        public static int CreatePasswordFile(string filename)
         {
-            var password = RandomStringProvider.Provide(64); // TODO: this uses System.Web. Check if there is a better way to generate the pw.
-            var targetPath = Path.GetFullPath(filename);
-            
-            File.WriteAllText(targetPath, password);
+            try
+            {
+                var password = RandomStringProvider.Provide(64); // TODO: this uses System.Web. Check if there is a better way to generate the pw.
+                var targetPath = Path.GetFullPath(filename);
+                
+                File.WriteAllText(targetPath, password);
 
-            //Log.InfoFormat("Created password in file {0}", targetPath);
+                Log.Info($"Created password in file {targetPath}");
+            }
+            catch (Exception e)
+            {
+                Log.ErrorException("Error creating password file", e);
+
+                return 1;
+            }
+
+            return 0;
         }
 
         public static void EncryptVariables(string path, string password = "", string passwordFile = "")

@@ -19,7 +19,7 @@ namespace Transformer.Model
         [XmlAttribute("do-encrypt")]
         public bool DoEncrypt { get; set; }
 
-        private ILog Log = LogManager.GetLogger(typeof(Variable));
+        private ILog Log = LogProvider.GetCurrentClassLogger();
 
         public Variable()
         {

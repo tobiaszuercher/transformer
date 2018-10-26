@@ -25,7 +25,7 @@ namespace Transformer.Template
     {
         private IList<Variable> Variables { get; set; }
         private static readonly string[] TrueStrings = { "TRUE", "ON", "1", "ENABLED" };
-        private static readonly ILog Log = LogManager.GetLogger(typeof(VariableResolver));
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
         public IList<VariableUsage> VariableUsageList { get; private set; }
 
         public static readonly Regex VariableRegex = new Regex(@"\$\{(?<Name>[^\}]+)\}", RegexOptions.Compiled);

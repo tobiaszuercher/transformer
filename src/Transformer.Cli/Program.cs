@@ -1,43 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 using CommandLine;
 using ServiceStack.Text;
-using Console = Colorful.Console;
+using Transformer.Logging;
 
 namespace Transformer.Cli
 {
     public class Program
     {
-         public static int Main(string[] args) {
-            var bla = Parser.Default.ParseArguments<
-                    TransformOptions, 
-                    EncryptOptions, 
-                    ListOptions, 
-                    ChangePasswordOptions, 
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
+
+        public static int Main(string[] args)
+        {
+            LogProvider.SetCurrentLogProvider(new ColoredConsoleLogProvider());
+
+            Log.Info("Gugus");
+
+            return Parser.Default.ParseArguments<
+                    TransformOptions,
+                    EncryptOptions,
+                    ListOptions,
+                    ChangePasswordOptions,
                     CreatePasswordFileOptions>(args)
                 .MapResult(
                     (TransformOptions opts) => Transform(opts),
                     (EncryptOptions opts) => Encrypt(opts),
                     (ListOptions opts) => ListEnvironments(opts),
                     (ChangePasswordOptions opts) => ChangePassword(opts),
-                    (CreatePasswordFileOptions opts) => CreatePasswordFile(opts),
-                    errs =>
-                    {
-                        Console.WriteLine(errs.Dump());
-                        
-                        return 1;
-                    });
-
-             bla.PrintDump();
-             return 0;
-         }
-
-        private static int CreatePasswordFile(CreatePasswordFileOptions opts)
-        {
-            Commands.CreatePasswordFile(opts.PasswordFile);
-            
-            return 1337;
+                    (CreatePasswordFileOptions opts) => Commands.CreatePasswordFile(opts.PasswordFile),
+                    errs => 1);
         }
 
         private static int ChangePassword(ChangePasswordOptions opts)

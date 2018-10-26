@@ -16,7 +16,7 @@ namespace Transformer.Template
     public class VariableUsage
     {
         private readonly Regex DefaultValueVariableRegex = new Regex(@"\$\[(?<Name>[^\]]+)\]", RegexOptions.Compiled);
-        private static ILog Log = LogManager.GetLogger(typeof(VariableResolver));
+        private static ILog Log = LogProvider.GetCurrentClassLogger();
 
         public Variable Variable { get; set; }
 

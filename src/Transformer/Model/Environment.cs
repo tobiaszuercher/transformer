@@ -26,7 +26,7 @@ namespace Transformer.Model
             get { return Variables.FirstOrDefault(v => v.Name == name); }
         }
 
-        private ILog Log = LogManager.GetLogger(typeof(Environment));
+        private ILog Log = LogProvider.GetCurrentClassLogger();
 
         public Environment()
         {

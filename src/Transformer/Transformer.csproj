@@ -4,7 +4,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Colorful.Console" Version="1.2.6" />
-    <PackageReference Include="NLog" Version="4.5.0-rc07" />
+    <PackageReference Include="LibLog" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="ServiceStack.Text" Version="5.0.2" />
   </ItemGroup>
 </Project>

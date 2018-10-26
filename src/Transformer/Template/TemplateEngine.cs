@@ -7,7 +7,7 @@ namespace Transformer.Template
 {
     public class TemplateEngine
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(VariableResolver));
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
 
         public VariableResolver VariableResolver { get; set; }
 

@@ -6,7 +6,7 @@ namespace Transformer
 {
     public class SearchInParentFolderLocator : StaticFolderEnvironmentLocator
     {
-        private static ILog Log = LogManager.GetLogger(typeof (SearchInParentFolderLocator));
+        private static ILog Log = LogProvider.GetCurrentClassLogger();
         public const string EnvironmentFolderName = ".transformer";
             
         public SearchInParentFolderLocator(string startDir)

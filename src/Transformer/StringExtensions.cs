@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Transformer.Cli")]
 
 namespace Transformer
 {

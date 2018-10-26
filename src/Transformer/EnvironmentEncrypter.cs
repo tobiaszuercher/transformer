@@ -22,7 +22,7 @@ namespace Transformer
     public class EnvironmentEncrypter
     {
         private const string RegexFormat = @"<variable (?<spaces_name>\s*)(name=""{0}"")(?<spaces_value>\s*)(value=""(?<value>[^""]+)"")\s*(encrypted=""([^""]*)"")?\s*(do-encrypt=""([^""]*)"")?";
-        private static readonly ILog Log = LogManager.GetLogger(typeof(EnvironmentEncrypter));
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
 
         private readonly string _aesKey;
         private IEnvironmentProvider _envProvider;

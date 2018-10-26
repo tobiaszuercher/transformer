@@ -9,7 +9,7 @@ namespace Transformer
 {
     public class XmlEnvironmentSerializer : IEnvironmentSerializer
     {
-        private static ILog _log = LogManager.GetLogger(typeof (XmlEnvironmentSerializer));
+        private static ILog _log = LogProvider.GetCurrentClassLogger();
 
         public Environment Deserialize(string file)
         {
