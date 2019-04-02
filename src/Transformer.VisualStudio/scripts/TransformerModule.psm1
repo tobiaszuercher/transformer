@@ -1,6 +1,4 @@
-﻿$sln_dir = Split-Path $dte.Solution.FullName
-$package_folder = Get-ChildItem (Join-Path $sln_dir "packages") -Filter Transformer.VisualStudio* | select -ExpandProperty Fullname -Last 1
-$transformer_exe = Join-Path $package_folder "tools/transformer.exe"
+﻿$transformer_exe = Join-Path $PSScriptRoot "transformer.exe"
 
 function Switch-Environment {
 	[CmdletBinding()]
